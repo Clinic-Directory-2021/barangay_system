@@ -1,0 +1,34 @@
+.center{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+@media (min-width:320px){
+.center{
+    margin-top: 50px;
+    width: 100%;
+}
+}
+@media (min-width:420px){
+    
+}
+@media (min-width:640px){
+    .center{
+        width: 500px;
+    }
+}
+@media (min-width:981px){
+    .center{
+        width: 500px;
+    }
+}
+@media (min-width:1025px){
+    
+}
+@media (min-width:1280px){
+    .center{
+        width: 500px;
+    }
+}
