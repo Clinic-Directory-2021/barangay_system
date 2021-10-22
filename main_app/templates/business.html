@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="resident_record_content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <h3 class="p-5">List of Issued Certificate</h3>
+    <div class="m-5" style="width:80%;">
+         <div>
+            <table class="table striped">
+                <thead>
+                    <tr>
+                        <ul class="nav nav-tabs bg-grayBlue">
+                            <li class="nav-item">
+                              <a class="nav-link fg-white" aria-current="page" href="{% url 'manage_certificate' %}">Clearance</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fg-white" fg-white href="{% url 'indigency' %}">Indigency</a>
+                              </li>
+                            <li class="nav-item">
+                              <a class="nav-link active" href="{% url 'business' %}">Business Permit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fg-white" href="{% url 'residency' %}">Residency</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link fg-white" href="{% url 'summary' %}">Summary</a>
+                              </li>
+                          </ul>
+                    </tr>
+                    <tr>
+                        <th>NAME</th>
+                        <th>TRANSACTION TYPE</th>
+                        <th>DATE ISSUED</th>
+                        <th>DATE EXPIRED</th>
+                        <th>O.R.#</th>
+                        <th>TOOLS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr>
+                       <td>sss</td>
+                       <td>sss</td>
+                       <td>sss</td>
+                       <td>sss</td>
+                       <td>sss</td>
+                       <td><button class="button mif-printer icon primary"></button></td>
+                   </tr>
+                 </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

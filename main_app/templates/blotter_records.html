@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="resident_record_content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <h3 class="p-5">Blotter Record</h3>
+    <div class="m-5" style="width:80%;">
+        <table class="table striped table-border mt-4"
+        data-role="table"
+       data-rows-steps="5, 10"
+        data-rows="5">
+            <thead>
+                <tr class="bg-grayWhite">
+                    <th>STATUS</th>
+                    <th>INCIDENT TYPE</th>
+                    <th>DATE AND TIME REPORT</th>
+                    <th>DATE AND TIME INCIDENT</th>
+                    <th>DATE RECORDED</th>
+                    <th>TOOLS</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Active</td>
+                        <td>asd</td>
+                        <td>Divina Santos</td>
+                        <td>Female</td>
+                        <td>4</td>
+                        <td>
+                            <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+                            <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
+                            data-popover-position="top" data-popover-hide="1000"></button>
+                            <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
+                            data-popover-position="top" data-popover-hide="1000"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Active</td>
+                        <td>asd</td>
+                        <td>Divina Santos</td>
+                        <td>Female</td>
+                        <td>4</td>
+                        <td>
+                            <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+                            <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
+                            data-popover-position="top" data-popover-hide="1000"></button>
+                            <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
+                            data-popover-position="top" data-popover-hide="1000"></button>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><icon class="mif-info icon mr-4"></icon>Case Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table striped">
+                <thead>
+                    <tr>
+                        <th>Complainant</th>
+                        <th>Statement</th>
+                        <th>Respondent</th>
+                        <th>Involved</th>
+                        <th>Location</th>
+                        <th>Remarks</th>
+                        <th>Action Taken</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            asd
+                        </td>
+                        <td>
+                            asd
+                        </td>
+                        <td>
+                            asd
+                        </td>
+                        <td>
+                            asd
+                        </td>
+                        <td>
+                            asd
+                        </td>
+                        <td>
+                            asd
+                        </td>
+                        <td>
+                            asd
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

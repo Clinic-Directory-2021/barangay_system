@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="add_resident_content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <h3 class="p-5">Resident</h3>
+    <div style="display: flex;">
+        <div style="width: 20%;">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-content p-2">
+                    <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+                </div>
+                <input type="file" data-role="file" data-prepend="Change Picture">    
+            </div>
+        </div>
+        <div style="width: 60%;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th colspan="2" style="text-align: center;">Resident Form</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <p><b>First Name</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter first name">
+                    </td>
+                    <td>
+                        <p><b>Email</b></p>
+                        <input type="email" data-role="input" class="" placeholder="Enter email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Midle Name</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter middle name">
+                    </td>
+                    <td>
+                        <p><b>Street</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter street">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Last Name</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter last name">
+                    </td>
+                    <td>
+                        <p><b>Purok/Area</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter purok or area">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Gender</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter gender">
+                    </td>
+                    <td>
+                        <p><b>Citizenship</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter citizenship">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Civil Status</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Civil Status">
+                    </td>
+                    <td>
+                        <p><b>Differently Disabled Person</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Differently Disabled Person">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Age</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Age">
+                    </td>
+                    <td>
+                        <p><b>Relation to Head Family</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Relation to head family">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Birth Date</b></p>
+                        <input type="date" data-role="input" class="" placeholder="Enter birth date">
+                    </td>
+                    <td>
+                        <p><b>Religion</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter religion">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Phone Number</b></p>
+                        <input type="number" data-role="input" class="" placeholder="Enter Phone Number">
+                    </td>
+                    <td>
+                        <p><b>Status</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Status">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button class="button success">Submit</button>
+                        <button class="button warning">Cancel</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock content %}

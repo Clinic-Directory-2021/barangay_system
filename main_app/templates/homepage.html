@@ -1,6 +1,72 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="header" style="width:100%; margin:0;">
-    
+<div class="homepage-content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <h3 class="p-5">Barangay Information</h3>
+    <div class="homepage-flex" style="display: flex;">
+        <div style="width: 20%;">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-content p-2">
+                    <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+                </div>
+                <input type="file" data-role="file" data-prepend="Change logo">
+                <table class="table striped" style="text-align: center;">
+                    <tbody>
+                        <tr>
+                            <td>Barangay</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Municipality</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Province</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>Bill</td>
+                        </tr>
+                        </tbody>
+                </table>    
+            </div>
+        </div>
+        <div class="form p-5" style="width: 50%;">
+        <form>
+            <div class="form-group">
+                <label>Barangay</label>
+                <input type="email" placeholder="Barangay" disabled/>
+            </div>
+            <div class="form-group">
+                <label>Municipality</label>
+                <input type="text" placeholder="Municipality" disabled/>
+            </div>
+            <div class="form-group">
+                <label>Province</label>
+                <input type="text" placeholder="Province" disabled/>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="number" placeholder="Phone Number" disabled/>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="Email" disabled/>
+            </div>
+            <div class="form-group">
+                <button class="button primary mif-pencil icon"><b class="ml-3">Update</b></button>
+            </div>
+        </form>
+</div>
+    </div>
 </div>
 {% endblock content %}

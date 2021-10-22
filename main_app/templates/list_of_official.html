@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="list-of-official">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <h3 class="p-5">Barangay Information</h3>
+    <div class="list-flex" style="display: flex;">
+    <div style="width: 20%;">
+        <div class="card">
+            <h5 style="text-align: center;">Captain</h5>
+            <div class="card-header">
+            </div>
+            <div class="card-content p-2">
+                <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+            </div>
+            <table class="table striped" style="text-align: center;">
+                <tbody>
+                    <tr>
+                        <td>Age</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td>Civil Status</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td>Birth Date</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td>Term</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>Bill</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="button primary mif-eye icon" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button></td>
+                    </tr>
+                    </tbody>
+            </table>    
+        </div>
+    </div>
+    <div style="width: 60%; display: flex;">
+        <div class="row">
+            <div class="cell-4">
+                <div class="social-box  ml-5 mr-5 mb-5">
+                    <div class="header bg-cyan fg-white">
+                        <img src="../static/images/idea.png" class="avatar">
+                        <div class="title">Arnold Shvarcenegger</div>
+                        <div class="subtitle">Terminator</div>
+                    </div>
+                    <ul class="skills">
+                        <li>
+                            <div><img src="../static/images/check.png" alt=""></div>
+                            <div class="text-bold">Status</div>
+                        </li>
+                        <li>
+                            <div>4</div>
+                            <div class="text-bold">Age</div>
+                        </li>
+                        <li>
+                            <div><span class="mif-eye icon fg-cyan" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal"></span></div>
+                            <div class="text-bold">View</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+</div>
+<!--modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Official Information</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="display: flex;">
+             <div style="width: 50%;">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-content p-2">
+                        <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+                    </div>
+                    <table class="table striped" style="text-align: center;">
+                        <tbody>
+                            <tr>
+                                <td>Status</td>
+                                <td>Bill</td>
+                            </tr>
+                            <tr>
+                                <td>Term</td>
+                                <td>Bill</td>
+                            </tr>
+                            </tbody>
+                    </table>    
+                </div>
+            </div>
+             <div style="width: 50%;">
+                <table class="table striped" style="text-align: center;">
+                    <thead>
+                        <tr class="bg-grayWhite">
+                            <td colspan="2">Contact Details</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Age</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Civil Status</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Birth Date</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Birth Place</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Phone Number</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Email Address</td>
+                            <td>Bill</td>
+                        </tr>
+                        <tr>
+                            <td>Purok Area</td>
+                            <td>Bill</td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

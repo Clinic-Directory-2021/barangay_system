@@ -7,3 +7,33 @@ def register(request):
     return render(request,'register.html')
 def homepage(request):
     return render(request,'homepage.html')
+def list_of_official(request):
+    return render(request,'list_of_official.html')
+def manage_official(request):
+    return render(request,'manage_official.html')
+def resident_record(request):
+    return render(request,'resident_record.html')
+def resident_profile(request):
+    return render(request,'resident_profile.html')
+def case_involved(request):
+    return render(request,'case_involved.html')
+def add_resident(request):
+    return render(request,'add_resident.html')
+def blotter_records(request):
+    return render(request,'blotter_records.html')
+def edit_blotter_records(request):
+    return render(request,'edit_blotter_records.html')
+def issue_certificate(request):
+    return render(request,'issue_certificate.html')
+def manage_certificate(request):
+    return render(request,'manage_certificate.html')
+def indigency(request):
+    return render(request,'indigency.html')
+def business(request):
+    return render(request,'business.html')
+def residency(request):
+    return render(request,'residency.html')
+def summary(request):
+    return render(request,'summary.html')
+def report(request):
+    return render(request,'report.html')

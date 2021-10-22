@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="resident_record_content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <h3 class="p-5">Edit Blotter Record</h3>
+
+    <table class="table mx-10" style="width: 80%;">
+        <tbody>
+            <tr>
+                <td>Step 1 Complainants</td>
+                <th><button class="button primary" style="float: right;"><icon class="mr-4 mif-backspace icon"></icon>Back</button></th>
+            </tr>
+        <tr>
+            <td colspan="2">
+                <p><b>Select complainants</b></p>
+                <input type="text" data-role="input" class="" placeholder="Selecty complainants">
+                <br>
+                <p><b>Complaint Statement</b></p>
+                <textarea data-role="textarea" data-prepend="<span class='mif-leanpub'></span>"></textarea>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table mx-10" style="width: 80%;">
+        <tbody>
+            <tr>
+                <td>Step 2 Respondents</td>
+            </tr>
+        <tr>
+            <td colspan="2">
+                <p><b>Select select respondent</b></p>
+                <input type="text" data-role="input" class="" placeholder="Select respondent">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table mx-10" style="width: 80%;">
+        <tbody>
+            <tr>
+                <td>Step 3 Person Involved</td>
+            </tr>
+        <tr>
+            <td colspan="2">
+                <p><b>Person Involved</b></p>
+                <input type="text" data-role="input" class="" placeholder="Person Involved">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table mx-10" style="width: 80%;">
+        <tbody>
+            <tr>
+                <td>Step 4 Narrative report and Incident details</td>
+            </tr>
+        <tr>
+            <td>
+                <p><b>Location of Incident</b></p>
+                <input type="text" data-role="input" class="" placeholder="Person Involved">
+            </td>
+            <td>
+                <p><b>DateTime of Incident</b></p>
+                <input type="date" data-role="input" class="" placeholder="Person Involved">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>Incident Type</b></p>
+                <input type="text" data-role="input" class="" placeholder="Person Involved">
+            </td>
+            <td>
+                <p><b>Status</b></p>
+                <input type="text" data-role="input" class="" placeholder="Person Involved">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p><b>DateTime of Reported</b></p>
+                <input type="datetime" data-role="input" class="" placeholder="Person Involved">
+            </td>
+            <td>
+                <p><b>remarks</b></p>
+                <input type="text" data-role="input" class="" placeholder="Person Involved">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p><b>Action Taken</b></p>
+                <textarea data-role="textarea" data-prepend="<span class='mif-leanpub'></span>"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td><button class="button primary"><icon class="mif-checkmark icon mr-3"></icon>Submit</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock content %}
