@@ -12,8 +12,13 @@
         <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js" defer></script>
         <script src="https://cdn.metroui.org.ua/v4.3.2/js/metro.min.js" defer></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <!--CSS links-->
         <link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+
+        <script src="{% static 'js/add_resident.js'%}" defer></script>
     <title>Document</title>
 </head>
 <body style="display: flex;">
@@ -60,7 +65,7 @@
         <li class="active"><a href="{% url 'report' %}"><span class="mif-table icon"></span>Report</a></li>
         <li class="active"><a href="#"><span></span></a></li>
         <li class="title">Actions</li>
-        <li class="active"><a href="{% url 'report' %}"><span class="mif-arrow-left icon"></span>Logout</a></li>
+        <li class="active"><a href="{% url 'logout' %}"><span class="mif-arrow-left icon"></span>Logout</a></li>
     </ul>
     {%block content%}
     {% endblock content%}

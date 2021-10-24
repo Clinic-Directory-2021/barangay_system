@@ -36,4 +36,7 @@ urlpatterns = [
     path('residency/', views.residency, name="residency"),
     path('summary/', views.summary, name="summary"),
     path('report/', views.report, name="report"),
+    path('login_validation/', views.login_validation, name="login_validation"),
+    path('logout/', views.logout, name="logout"),
+    path('addResident/', views.addResident, name="addResident"),
 ]

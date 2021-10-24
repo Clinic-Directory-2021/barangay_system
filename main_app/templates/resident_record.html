@@ -21,40 +21,26 @@
                     <th>TOOLS</th>
                 </tr>
                 </thead>
+                {% for resident in resident_data %}
                 <tbody>
                     <tr>
-                        <td>Active</td>
-                        <td><img src="../static/images/idea.png" alt=""></td>
-                        <td>Divina Santos</td>
-                        <td>Female</td>
-                        <td>4</td>
-                        <td>Campupot</td>
+                        <td>{{resident.status}}</td>
+                        <td><img src="{{resident.resident_img_url}}" alt="" width="15%"></td>
+                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
+                        <td>{{resident.gender}}</td>
+                        <td>{{resident.purok}}</td>
+                        <td>{{resident.street}}</td>
                         <td>
                             <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000"></button>
+                            data-popover-position="top" data-popover-hide="1000" onclick="viewResident('{{resident.resident_id}}')"></button>
                             <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000"></button>
+                            data-popover-position="top" data-popover-hide="1000" onclick="editResident('{{resident.resident_id}}')"></button>
                             <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Active</td>
-                        <td><img src="../static/images/idea.png" alt=""></td>
-                        <td>Divina Santos</td>
-                        <td>Female</td>
-                        <td>4</td>
-                        <td>Campupot</td>
-                        <td>
-                            <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                            <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                            <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
-                            data-popover-position="top" data-popover-hide="1000"></button>
+                            data-popover-position="top" data-popover-hide="1000" onclick="deleteResident('{{resident.resident_id}}')"></button>
                         </td>
                     </tr>
                 </tbody>
+                {% endfor %}
         </table>
     </div>
 </div>
