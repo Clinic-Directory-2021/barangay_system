@@ -11,29 +11,29 @@
                 <div class="card-header">
                 </div>
                 <div class="card-content p-2">
-                    <img src="http://lorempixel.com/1000/600/" style="width: 100%">
+                    <img src="{{resident.resident_img_url}}" style="width: 100%">
                 </div>
                 <table class="table striped">
                     <tbody>
                         <tr>
                             <td><icon class="mif-credit-card icon mr-5"></icon>Age</td>
-                            <td>Bill</td>
+                            <td>{{resident.age}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-male icon mr-5"></icon> Gender</td>
-                            <td>Bill</td>
+                            <td>{{resident.gender}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-question icon mr-5"></icon>Civil Status</td>
-                            <td>Bill</td>
+                            <td>{{resident.civil_status}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-cake icon mr-5"></icon>Birth Date</td>
-                            <td>Bill</td>
+                            <td>{{resident.birthdate}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-info icon mr-5"></icon>Status</td>
-                            <td>Bill</td>
+                            <td>{{resident.status}}</td>
                         </tr>
                         </tbody>
                 </table>    
@@ -55,40 +55,40 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><icon class="mif-location-city icon mr-5"></icon>Birth Place</td>
-                        <td>Bill</td>
-                    </tr>
-                    <tr>
                         <td><icon class="mif-dialpad icon mr-5"></icon>Phone Number</td>
-                        <td>Bill</td>
+                        <td>{{resident.phone_number}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-envelop icon mr-5"></icon>Email Address</td>
-                        <td>Bill</td>
+                        <td>{{resident.email}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-list icon mr-5"></icon>Purok Area</td>
-                        <td>Bill</td>
+                        <td>{{resident.purok}}</td>
+                    </tr>
+                    <tr>
+                        <td><icon class="mif-keyboard-hide icon mr-5"></icon>Street</td>
+                        <td>{{resident.street}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-profile icon mr-5"></icon>Citizenship</td>
-                        <td>Bill</td>
+                        <td>{{resident.citizenship}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-odnoklassniki icon mr-5"></icon>Disabled Person</td>
-                        <td>Bill</td>
+                        <td>{{resident.diff_disabled}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-steps icon mr-5"></icon>Relation Head Family</td>
-                        <td>Bill</td>
+                        <td>{{resident.relation}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-water icon mr-5"></icon>Religion</td>
-                        <td>Bill</td>
+                        <td>{{resident.religion}}</td>
                     </tr>
                     <tr>
-                        <td><icon class="mif-keyboard-hide icon mr-5"></icon>Occupation</td>
-                        <td>Bill</td>
+                        <td><icon class="mif-keyboard-hide icon mr-5"></icon>Full Name</td>
+                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
                     </tr>
                     </tbody>
             </table>

@@ -39,4 +39,10 @@ urlpatterns = [
     path('login_validation/', views.login_validation, name="login_validation"),
     path('logout/', views.logout, name="logout"),
     path('addResident/', views.addResident, name="addResident"),
+
+    path('delete_resident/', views.delete_resident, name="delete_resident"),
+
+    #render_pdf files
+    path('generate_indigent/', views.generate_indigent, name="generate_indigent"),
+
 ]

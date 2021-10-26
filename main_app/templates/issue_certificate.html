@@ -19,18 +19,19 @@
                     <th>ISSUE CERTIFICATE</th>
                 </tr>
             </thead>
+            {% for resident in resident_data %}
                 <tbody>
                     <tr>
-                        <td>Active</td>
-                        <td><img src="../static/images/idea.png" alt=""></td>
-                        <td>Divina Santos</td>
-                        <td>Female</td>
+                        <td>{{resident.status}}</td>
+                        <td><img src="{{resident.resident_img_url}}" alt="" width="15%"></td>
+                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
+                        <td>{{resident.gender}}</td>
                         <td>
                             
                             <button class="button light" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"><icon class="mif-profile icon mr-5"></icon>Clearance</button>
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#clearanceModal"><icon class="mif-profile icon mr-5"></icon>Clearance</button>
                             <button class="button success" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#indigentModal" onclick="indigentModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
                             <button class="button secondary" data-role="popover" data-popover-text="Edit"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"><icon class="mif-event-busy icon mr-5"></icon>Business Permit</button>
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
@@ -38,12 +39,13 @@
                         </td>
                     </tr>
                 </tbody>
+                {% endfor %}
         </table>
     </div>
 </div>
 
-<!--modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true" data-bs-backdrop="static">
+<!--clearance modal-->
+<div class="modal fade" id="clearanceModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -51,15 +53,43 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <p><b>Purpose</b></p>
-                <textarea data-role="textarea" data-prepend="<span class='mif-leanpub'></span>"></textarea>
-                <p><b>Enter OR no.</b></p>
-                <p><b>Incident Type</b></p>
-                <input type="number" data-role="input" class="" placeholder="Enter OR number">
+                <p><b>Date When Will Clearance Be Given</b></p>
+                <input type="date" data-role="input" class="" name="date">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
           <button type="button" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--indigent modal-->
+<div class="modal fade" id="indigentModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal"><icon class="mif-info icon mr-4"></icon>Barangay Indigency</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="/generate_indigent/" method="post">
+            {% csrf_token %}
+        <div class="modal-body">
+                <p><b>Purpose</b></p>
+                <input type="text" data-role="input" class="" name="purpose" required>
+
+                <p><b>Date When Will Indigent Be Given</b></p>
+                <input type="date" data-role="input" class="" name="date" required>
+
+                <!-- Hidden Data -->
+                <input type="hidden" name="indigent_full_name" id="indigent_full_name"/> 
+                <input type="hidden" name="indigent_age" id="indigent_age"/> 
+                <input type="hidden" name="indigent_resident_id" id="indigent_resident_id"/>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
+          <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+        </form>
         </div>
       </div>
     </div>
