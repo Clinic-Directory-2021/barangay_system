@@ -18,35 +18,33 @@
                                 <a class="nav-link fg-white" fg-white href="{% url 'indigency' %}">Indigency</a>
                               </li>
                             <li class="nav-item">
-                              <a class="nav-link fg-white" href="{% url 'business' %}">Business Permit</a>
+                              <a class="nav-link fg-white" href="{% url 'business' %}">Building Permit</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fg-white" href="{% url 'residency' %}">Residency</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link active" href="{% url 'summary' %}">Summary</a>
+                                <a class="nav-link active" href="{% url 'summary' %}">Wiring</a>
                               </li>
                           </ul>
                     </tr>
                     <tr>
-                        <th>NAME</th>
-                        <th>TRANSACTION TYPE</th>
-                        <th>DATE ISSUED</th>
-                        <th>DATE EXPIRED</th>
-                        <th>O.R.#</th>
-                        <th>TOOLS</th>
+                      <th>RESIDENT NAME</th>
+                      <th>DATE ISSUED</th>
+                      <th>CERTIFICATE TYPE</th>
+                      <th>TOOLS</th>
                     </tr>
                 </thead>
+                {% for certificate in certificates %}                                                  
                 <tbody>
                    <tr>
-                       <td>sss</td>
-                       <td>sss</td>
-                       <td>sss</td>
-                       <td>sss</td>
-                       <td>sss</td>
-                       <td><button class="button mif-printer icon primary"></button></td>
+                       <td>{{certificate.resident_full_name}}</td>
+                       <td>{{certificate.date}}</td>
+                       <td>{{certificate.clearance_type}}</td>
+                       <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{certificate.indigent_pdf_url}}')"></button></td>
                    </tr>
                  </tbody>
+                 {% endfor %}
             </table>
         </div>
     </div>

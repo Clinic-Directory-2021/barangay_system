@@ -41,8 +41,14 @@ urlpatterns = [
     path('addResident/', views.addResident, name="addResident"),
 
     path('delete_resident/', views.delete_resident, name="delete_resident"),
-
+    
     #render_pdf files
     path('generate_indigent/', views.generate_indigent, name="generate_indigent"),
-
+    path('generate_clearance/', views.generate_clearance, name="generate_clearance"),
+    path('generate_building/', views.generate_building, name="generate_building"),
+    path('generate_residency/', views.generate_residency, name="generate_residency"),
+    path('generate_wiring/', views.generate_wiring, name="generate_wiring"),
+    path('generate_excavation/', views.generate_excavation, name="generate_excavation"),
+    path('generate_fencing/', views.generate_fencing, name="generate_fencing"),
+    path('generate_water/', views.generate_water, name="generate_water"),
 ]

@@ -127,22 +127,123 @@ def issue_certificate(request):
     return render(request,'issue_certificate.html', data)
     
 def manage_certificate(request):
-    return render(request,'manage_certificate.html')
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_clearance').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'manage_certificate.html', data)
 
 def indigency(request):
-    return render(request,'indigency.html')
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_indigent').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'indigency.html', data)
 
 def business(request):
-    return render(request,'business.html')
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_building').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'business.html', data)
 
 def residency(request):
-    return render(request,'residency.html')
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_residency').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'residency.html', data)
     
 def summary(request):
-    return render(request,'summary.html')
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_wiring').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'summary.html', data)
 
 def report(request):
-    return render(request,'report.html')
+    residents = firestoreDB.collection('resident_list').get()
+
+    building_permits = firestoreDB.collection('list_of_issued_certificate_building').get()
+    clearances = firestoreDB.collection('list_of_issued_certificate_clearance').get()
+    excavation_clearance = firestoreDB.collection('list_of_issued_certificate_excavation').get()
+    fencing_clearance = firestoreDB.collection('list_of_issued_certificate_fencing').get()
+    indigency = firestoreDB.collection('list_of_issued_certificate_indigent').get()
+    residency = firestoreDB.collection('list_of_issued_certificate_residency').get()
+    water_installation = firestoreDB.collection('list_of_issued_certificate_water').get()
+    wiring_permit = firestoreDB.collection('list_of_issued_certificate_wiring').get()
+
+    total_residents = 0
+    total_certificates = 0
+
+    for resident in residents:
+        total_residents += 1
+    
+    for bldg in building_permits:
+        total_certificates += 1
+
+    for clr in clearances:
+        total_certificates += 1
+
+    for exca in excavation_clearance:
+        total_certificates += 1
+
+    for fence in fencing_clearance:
+        total_certificates += 1
+
+    for indgent in indigency:
+        total_certificates += 1
+
+    for res in residency:
+        total_certificates += 1
+
+    for water in water_installation:
+        total_certificates += 1
+
+    for wiring in wiring_permit:
+        total_certificates += 1
+
+
+    data = {
+        'total_residents': total_residents,
+        'total_certificates': total_certificates,
+    }
+    return render(request,'report.html', data)
 
 def logout(request):
     try:
@@ -173,6 +274,7 @@ def addResident(request):
         religion = request.POST.get('religion')
         phone_number = request.POST.get('phone_number')
         status = request.POST.get('status')
+        birthplace = request.POST.get('birthplace')
         
         password = 'BARANGAYRESIDENT'+first_name+last_name
 
@@ -204,6 +306,7 @@ def addResident(request):
                 'religion': religion,
                 'phone_number': phone_number,
                 'status': status,
+                'birthplace': birthplace,
             })
 
             
@@ -231,6 +334,7 @@ def delete_resident(request):
 
         return redirect('resident_record')      
 
+
 def generate_indigent(request):
     if request.method == 'POST':
         
@@ -240,6 +344,7 @@ def generate_indigent(request):
         indigent_age = request.POST.get('indigent_age')
         indigent_resident_id = request.POST.get('indigent_resident_id')
 
+        purpose = purpose.upper()
 
         template_path = 'pdf_generated/indigency.html'
 
@@ -250,8 +355,6 @@ def generate_indigent(request):
             'indigent_age': indigent_age,
             }
 
-        pdf_file_directory = indigent_resident_id + "/resident_indigent/indigent.pdf"
-
 
         # # find the template and render it.
         template = get_template(template_path)
@@ -261,18 +364,401 @@ def generate_indigent(request):
         
         if not pdf.err:
 
-
-            storage.child(pdf_file_directory).put(result.getvalue())
-
             doc_ref = firestoreDB.collection('resident_list').document(indigent_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_indigent').document()
+
+            pdf_file_directory = indigent_resident_id + "/resident_indigent/" + doc_ref_list_of_issued_certificate.id + ".pdf"  
 
             doc_ref.update({
                 'indigent_pdf_url' : storage.child(pdf_file_directory).get_url(None),
                 'indigent_pdf_directory' : pdf_file_directory,
                 })
 
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'indigent_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'indigent_pdf_directory' : pdf_file_directory,
+                'resident_id': indigent_resident_id,
+                'purpose': purpose,
+                'date': date, 
+                'resident_full_name': indigent_full_name,
+                'resident_age': indigent_age,
+                'clearance_type': 'Indigent Certificate',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
+
+def generate_clearance(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        clearance_full_name = request.POST.get('clearance_full_name')
+        clearance_age = request.POST.get('clearance_age')
+        clearance_resident_id = request.POST.get('clearance_resident_id')
+
+
+        template_path = 'pdf_generated/clearance.html'
+
+        context = {
+            'date': date, 
+            'clearance_full_name': clearance_full_name,
+            'clearance_age': clearance_age,
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(clearance_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_clearance').document()
+
+            pdf_file_directory = clearance_resident_id + "/resident_clearance/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'clearance_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'clearance_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'clearance_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'clearance_pdf_directory' : pdf_file_directory,
+                'resident_id': clearance_resident_id,
+                'date': date, 
+                'resident_full_name': clearance_full_name,
+                'resident_age': clearance_age,
+                'clearance_type': 'Clearance Certificate',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+def generate_building(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        building_full_name = request.POST.get('building_full_name')
+        building_age = request.POST.get('building_age')
+        building_resident_id = request.POST.get('building_resident_id')
+
+
+        template_path = 'pdf_generated/building_permit.html'
+
+        context = {
+            'date': date, 
+            'clearance_full_name': building_full_name,
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(building_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_building').document()
+
+            pdf_file_directory = building_resident_id + "/resident_building_permit/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'building_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'building_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'building_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'building_pdf_directory' : pdf_file_directory,
+                'resident_id': building_resident_id,
+                'date': date, 
+                'resident_full_name': building_full_name,
+                'resident_age': building_age,
+                'clearance_type': 'Building Permit/Clearance',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+def generate_residency(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        residency_full_name = request.POST.get('residency_full_name')
+        residency_age = request.POST.get('residency_age')
+        residency_resident_id = request.POST.get('residency_resident_id')
+        birthplace = request.POST.get('residency_birthplace')
+        residency_civil_status = request.POST.get('residency_civil_status')
+        residency_birthdate = request.POST.get('residency_birthdate')
+
+
+        template_path = 'pdf_generated/residency.html'
+
+        context = {
+            'date': date, 
+            'residency_full_name': residency_full_name,
+            'residency_age': residency_age,
+            'birthplace': birthplace,
+            'residency_civil_status': residency_civil_status,
+            'residency_birthdate': residency_birthdate,
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(residency_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_residency').document()
+
+            pdf_file_directory = residency_resident_id + "/resident_residency/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'residency_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'residency_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'residency_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'residency_pdf_directory' : pdf_file_directory,
+                'resident_id': residency_resident_id,
+                'date': date, 
+                'resident_full_name': residency_full_name,
+                'resident_age': residency_age,
+                'resident_birthplace': birthplace,
+                'resident_civil_status': residency_civil_status,
+                'resident_birthdate': residency_birthdate,
+                'clearance_type': 'Barangay Residency',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+
+def generate_wiring(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        wiring_full_name = request.POST.get('wiring_full_name')
+        wiring_resident_id = request.POST.get('wiring_resident_id')
+        house_location = request.POST.get('house_location')
+
+
+        template_path = 'pdf_generated/wiring_permit.html'
+
+        context = {
+            'date': date, 
+            'wiring_full_name': wiring_full_name,
+            'house_location': house_location,
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(wiring_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_wiring').document()
+
+            pdf_file_directory = wiring_resident_id + "/resident_wiring/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'wiring_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'wiring_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'wiring_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'wiring_pdf_directory' : pdf_file_directory,
+                'resident_id': wiring_resident_id,
+                'date': date, 
+                'resident_full_name': wiring_full_name,
+                'resident_house_location': house_location,
+                'clearance_type': 'Electrical Inspection/Wiring Permit',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+def generate_excavation(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        excavation_full_name = request.POST.get('excavation_full_name')
+        excavation_resident_id = request.POST.get('excavation_resident_id')
+
+
+        template_path = 'pdf_generated/excavation_clearance.html'
+
+        context = {
+            'date': date, 
+            'excavation_full_name': excavation_full_name,
+            
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(excavation_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_excavation').document()
+
+            pdf_file_directory = excavation_resident_id + "/resident_excavation/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'excavation_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'excavation_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'excavation_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'excavation_pdf_directory' : pdf_file_directory,
+                'resident_id': excavation_resident_id,
+                'date': date, 
+                'resident_full_name': excavation_full_name,
+                'clearance_type': 'Excavation Clearance',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+def generate_fencing(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        fencing_full_name = request.POST.get('fencing_full_name')
+        fencing_resident_id = request.POST.get('fencing_resident_id')
+
+
+        template_path = 'pdf_generated/fencing_clearance.html'
+
+        context = {
+            'date': date, 
+            'fencing_full_name': fencing_full_name,
+            
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(fencing_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_fencing').document()
+
+            pdf_file_directory = fencing_resident_id + "/resident_fencing/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'fencing_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'fencing_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'fencing_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'fencing_pdf_directory' : pdf_file_directory,
+                'resident_id': fencing_resident_id,
+                'date': date, 
+                'resident_full_name': fencing_full_name,
+                'clearance_type': 'Fencing Clearance',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+def generate_water(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        water_full_name = request.POST.get('water_full_name')
+        water_resident_id = request.POST.get('water_resident_id')
+
+
+        template_path = 'pdf_generated/water_installation_permit.html'
+
+        context = {
+            'date': date, 
+            'water_full_name': water_full_name,
+            
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(water_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_water').document()
+
+            pdf_file_directory = water_resident_id + "/resident_water/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'water_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'water_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'water_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'water_pdf_directory' : pdf_file_directory,
+                'resident_id': water_resident_id,
+                'date': date, 
+                'resident_full_name': water_full_name,
+                'clearance_type': 'Water Installation Permit',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
+
+
+
+
+
+
 
         # # Create a Django response object, and specify content_type as pdf
         # response = HttpResponse(content_type='application/pdf')
