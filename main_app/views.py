@@ -220,8 +220,14 @@ def report(request):
     water_installation = firestoreDB.collection('list_of_issued_certificate_water').get()
     wiring_permit = firestoreDB.collection('list_of_issued_certificate_wiring').get()
 
+    blotters = firestoreDB.collection('list_of_issued_certificate_blotter').get()
+
     total_residents = 0
     total_certificates = 0
+    total_blotter = 0
+
+    for blotter in blotters:
+        total_blotter += 1
 
     for resident in residents:
         total_residents += 1
@@ -254,6 +260,7 @@ def report(request):
     data = {
         'total_residents': total_residents,
         'total_certificates': total_certificates,
+        'total_blotter': total_blotter,
     }
     return render(request,'report.html', data)
 
