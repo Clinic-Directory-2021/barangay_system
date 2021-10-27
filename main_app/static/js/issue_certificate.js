@@ -46,3 +46,8 @@ function waterModal(first_name, middle_name, last_name, resident_id){
     $('#water_full_name').val(first_name.toUpperCase()  + ' ' + middle_name.toUpperCase()  + ' ' + last_name.toUpperCase());
     $('#water_resident_id').val(resident_id);
 }
+
+function blotterModal(first_name, middle_name, last_name, resident_id){
+    $('#blotter_full_name').val(first_name.toUpperCase()  + ' ' + middle_name.toUpperCase()  + ' ' + last_name.toUpperCase());
+    $('#blotter_resident_id').val(resident_id);
+}

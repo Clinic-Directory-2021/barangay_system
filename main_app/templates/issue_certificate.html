@@ -80,6 +80,13 @@
                             '{{resident.resident_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Water Installation Permit</button>
 
+                            <button class="button primary"  data-role="popover" data-popover-text="Delete"
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#blotterModal" 
+                            onclick="blotterModal('{{resident.first_name}}', 
+                            '{{resident.middle_name}}',
+                            '{{resident.last_name}}',
+                            '{{resident.resident_id}}');">
+                            <icon class="mif-flag icon mr-5"></icon>Blotter</button>
                         </td>
                     </tr>
                 </tbody>
@@ -143,11 +150,12 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
           <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+        </div>
         </form>
         </div>
       </div>
     </div>
-  </div>
+  
 
 
    <!--Building modal-->
@@ -173,11 +181,12 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
         <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+      </div>
       </form>
       </div>
     </div>
   </div>
-</div>
+
 
 <!--Residency modal-->
 <div class="modal fade" id="residencyModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true" data-bs-backdrop="static">
@@ -205,11 +214,12 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
         <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+      </div>
       </form>
       </div>
     </div>
   </div>
-</div>
+
 
 <!--Wiring modal-->
 <div class="modal fade" id="wiringModal" tabindex="-1" aria-labelledby="exampleModal" aria-hidden="true" data-bs-backdrop="static">
@@ -236,11 +246,12 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
         <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+      </div>
       </form>
       </div>
     </div>
   </div>
-</div>
+
 
 
 <!--Excavation modal-->
@@ -268,11 +279,12 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
         <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+      </div>
       </form>
       </div>
     </div>
   </div>
-</div>
+
 
 <!--Fencing modal-->
 <div class="modal fade" id="excavationModal" tabindex="-1" aria-labelledby="fencingModal" aria-hidden="true" data-bs-backdrop="static">
@@ -299,11 +311,12 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
         <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+      </div>
       </form>
       </div>
     </div>
   </div>
-</div>
+
 
 <!--Water modal-->
 <div class="modal fade" id="waterModal" tabindex="-1" aria-labelledby="fencingModal" aria-hidden="true" data-bs-backdrop="static">
@@ -330,9 +343,47 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
         <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+      </div>
       </form>
       </div>
     </div>
   </div>
+
+<!--Blotter modal-->
+<div class="modal fade" id="blotterModal" tabindex="-1" aria-labelledby="fencingModal" aria-hidden="true" data-bs-backdrop="static">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModal"><icon class="mif-info icon mr-4"></icon>Blotter</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <!-- START FORM -->
+    <form action="/generate_blotter/" method="post">
+        {% csrf_token %}
+    <div class="modal-body">
+            <p><b>Recipient of Summon Letter</b> <br>(if Recipient is more than one separate each recipient with comma [<strong> , </strong> ] without spacing [Example: Juan Dela Cruz,Pedro Santiago] )</p>
+            <textarea rows="5" cols="5" name="recipient" required></textarea>
+            
+            <!-- <input type="textarea" data-role="input" class="" name="recipient" required> -->
+            <br>
+            <p><b>Summon Date</b></p>
+            <input type="date" data-role="input" class="" name="summon_date" required>
+
+            <p><b>Summon Time</b></p>
+            <input type="time" data-role="input" class="" name="summon_time" required>
+
+            <!-- Hidden Data -->
+            <input type="hidden" name="blotter_full_name" id="blotter_full_name"/> 
+            <input type="hidden" name="blotter_resident_id" id="blotter_resident_id"/>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
+      <button type="submit" class="btn btn-primary"><icon class="mif-arrow-right mr-3"></icon>Proceed</button>
+    </div>
+    </form>
+    </div>
+  </div>
 </div>
+
+
 {% endblock content %}

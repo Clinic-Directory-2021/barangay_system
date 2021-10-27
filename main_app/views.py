@@ -107,7 +107,19 @@ def add_resident(request):
     return render(request,'add_resident.html')
 
 def blotter_records(request):
-    return render(request,'blotter_records.html')
+    blotter_records = firestoreDB.collection('list_of_issued_certificate_blotter').get()
+    
+    blotter_data = []
+
+    for blotter in blotter_records:
+        value = blotter.to_dict()
+        blotter_data.append(value)
+    
+    data = {
+        'blotter_data': blotter_data,
+    }
+
+    return render(request,'blotter_records.html', data)
 
 def edit_blotter_records(request):
     return render(request,'edit_blotter_records.html')
@@ -326,9 +338,9 @@ def delete_resident(request):
         resident_id = request.GET.get('resident_id')
         img_directory = request.GET.get('img_directory')
 
-        # auth.delete_user(resident_id)
+        auth.delete_user(resident_id)
 
-        # firestoreDB.collection('resident_list').document(resident_id).delete()
+        firestoreDB.collection('resident_list').document(resident_id).delete()
 
         storage.delete(img_directory, None)
 
@@ -753,7 +765,61 @@ def generate_water(request):
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
+def generate_blotter(request):
+    if request.method == 'POST':
+        summon_date = request.POST.get('summon_date')
+        blotter_full_name = request.POST.get('blotter_full_name')
+        summon_time = request.POST.get('summon_time')
+        recipient = request.POST.get('recipient')
+        blotter_resident_id = request.POST.get('blotter_resident_id')
 
+        recipient_list = recipient.split(",")
+        
+
+        template_path = 'pdf_generated/blotter.html'
+
+        context = {
+            'summon_date': summon_date, 
+            'blotter_full_name': blotter_full_name,
+            'summon_time': summon_time,
+            'recipients': recipient_list,
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(blotter_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_blotter').document()
+
+            pdf_file_directory = blotter_resident_id + "/resident_blotter/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'blotter_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'blotter_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'blotter_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'blotter_pdf_directory' : pdf_file_directory,
+                'resident_id': blotter_resident_id,
+                'summon_date': summon_date, 
+                'summon_time': summon_time,
+                'recipient': recipient,
+                'resident_full_name': blotter_full_name,
+                'clearance_type': 'Blotter',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
 
 
 

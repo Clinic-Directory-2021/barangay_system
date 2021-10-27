@@ -12,49 +12,27 @@
         data-rows="5">
             <thead>
                 <tr class="bg-grayWhite">
-                    <th>STATUS</th>
-                    <th>INCIDENT TYPE</th>
-                    <th>DATE AND TIME REPORT</th>
-                    <th>DATE AND TIME INCIDENT</th>
-                    <th>DATE RECORDED</th>
+                    <th>SUMMON DATE</th>
+                    <th>SUMMON TIME</th>
+                    <th>REQUESTED BY</th>
                     <th>TOOLS</th>
                 </tr>
                 </thead>
+                
+                {% for blotter in blotter_data %}        
                 <tbody>
                     <tr>
-                        <td>Active</td>
-                        <td>asd</td>
-                        <td>Divina Santos</td>
-                        <td>Female</td>
-                        <td>4</td>
-                        <td>
-                            <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
-                            <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                            <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Active</td>
-                        <td>asd</td>
-                        <td>Divina Santos</td>
-                        <td>Female</td>
-                        <td>4</td>
-                        <td>
-                            <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
-                            <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                            <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
-                            data-popover-position="top" data-popover-hide="1000"></button>
-                        </td>
+                        <td>{{blotter.summon_date}}</td>
+                        <td>{{blotter.summon_time}}</td>
+                        <td>{{blotter.resident_full_name}}</td>
+                        <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{blotter.blotter_pdf_url}}')"></button></td>
                     </tr>
                 </tbody>
+                {% endfor %}
         </table>
     </div>
 </div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">

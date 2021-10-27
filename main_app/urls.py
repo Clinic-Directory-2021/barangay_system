@@ -51,4 +51,6 @@ urlpatterns = [
     path('generate_excavation/', views.generate_excavation, name="generate_excavation"),
     path('generate_fencing/', views.generate_fencing, name="generate_fencing"),
     path('generate_water/', views.generate_water, name="generate_water"),
+    path('generate_blotter/', views.generate_blotter, name="generate_blotter"),
+    
 ]
