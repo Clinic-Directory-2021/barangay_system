@@ -7,3 +7,6 @@ function viewResident(resident_id){
     document.location.href = url + "?resident_id=" + resident_id;
     
 }
+function editResident(resident_id, old_img_file_directory, email){
+    window.location.href = "../edit_resident/?resident_id="+resident_id+ "&old_img_file_directory=" +old_img_file_directory + "&email=" + email;
+}

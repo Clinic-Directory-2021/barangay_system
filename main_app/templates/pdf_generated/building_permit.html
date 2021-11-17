@@ -2,9 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<style>
+    @page  {
+      margin: 0;
+      size: letter; /*or width x height 150mm 50mm*/
+    }
+    </style>
 <body>
-    {{date}}
-    {{clearance_full_name}}
+    <header style="display: flex;">
+        <img src="../../static/images/check.png" alt="" width="100" height="100">
+        <div>
+            REPUBLIC OF THE PHILIPPINES<br>
+            PROVINCE OF BULACAN<br>
+            MUNICIPALITY OF PULILAN<br>
+            <text style="color:blue">BARANGAY TINJERO</text><br>
+        </div>
+        <img src="../../static/images/check.png" alt="" width="100" height="100">
+    </header>
+    <hr>
+    <div style="display: flex; padding: 20px;">
+        <div style="width: 20%; border:1px solid black; margin: 5px;">
+            <h3>Barangay Officials</h3>
+        </div>
+        <div style="width: 80%; margin-left: 10px;">
+            <h3 align="center">BARANGAY BUILDING CLEARANCE</h3>
+            To Whom It May Concern:<br><br><br><br>
+            Certifying the grant of Barangay Permit to <u>{{clearance_full_name}}</u><br><br>
+            of legal age and with postal address in Tinejero, <br><br>
+            Pulilan, Bulacan.<br><br>
+            This certificate is being issued upon the request of the above0<br><br>
+            named person to used for any legal intent purpose it may serve.<br><br>
+            Given this {{date}} here at Barangay<br><br>
+            Tinejero, Pulilan, Bulacan
+            <br>
+            <br>
+            <br>
+            <h5><u>NUMERIA NO B. LEONARDO</u></h5>
+            <u>Barangay Captain</u>
+        </div>
+    </div>
 </body>
 </html>

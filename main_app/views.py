@@ -208,6 +208,48 @@ def summary(request):
     }
     return render(request,'summary.html', data)
 
+def fencing(request):
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_fencing').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'fencing.html', data)
+
+def water(request):
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_water').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'water.html', data)
+
+def excavation(request):
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_excavation').get()
+
+    issued_certificate = []
+
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
+    
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'excavation.html', data)
+
 def report(request):
     residents = firestoreDB.collection('resident_list').get()
 
@@ -828,7 +870,88 @@ def generate_blotter(request):
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
+def edit_resident(request):
+    email = request.GET.get('email')
+    resident_id = request.GET.get('resident_id')
+    old_img_file_directory = request.GET.get('old_img_file_directory')
+    data = {
+        'email': email,
+        'resident_id': resident_id,
+        'old_img_file_directory': old_img_file_directory,
+    }
+    return render(request,'edit_resident.html', data)
 
+def editResidentFirebase(request):
+    if request.method == 'POST':
+        resident_image =  request.FILES['resident_image']
+        fileName = request.POST.get('fileName')
+        
+        resident_id = request.POST.get('resident_id')
+        old_img_file_directory = request.POST.get('old_img_file_directory')
+
+        first_name = request.POST.get('first_name')
+        email = request.POST.get('email')
+        middle_name = request.POST.get('middle_name')
+        street = request.POST.get('street')
+        last_name = request.POST.get('last_name')
+        purok = request.POST.get('purok')
+        gender = request.POST.get('gender')
+        citizenship = request.POST.get('citizenship')
+        civil_status = request.POST.get('civil_status')
+        diff_disabled = request.POST.get('diff_disabled')
+        age = request.POST.get('age')
+        relation = request.POST.get('relation')
+        birthdate = request.POST.get('birthdate')
+        religion = request.POST.get('religion')
+        phone_number = request.POST.get('phone_number')
+        status = request.POST.get('status')
+        birthplace = request.POST.get('birthplace')
+
+        try:
+            img_file_directory = resident_id+"/resident_images/"+ fileName
+
+            #delete the old picture
+            storage.delete(old_img_file_directory, resident_id)
+            
+            #upload product image
+            storage.child(img_file_directory).put(resident_image, resident_id)
+
+            doc_ref = firestoreDB.collection('resident_list').document(resident_id)
+
+            doc_ref.update({
+                'resident_img_url' : storage.child(img_file_directory).get_url(None),
+                'resident_img_directory' : img_file_directory,
+                'first_name': first_name,
+                'email': email,
+                'middle_name': middle_name,
+                'street': street,
+                'last_name': last_name,
+                'purok': purok,
+                'gender': gender,
+                'citizenship': citizenship,
+                'civil_status': civil_status,
+                'diff_disabled': diff_disabled,
+                'age': age,
+                'relation': relation,
+                'birthdate': birthdate,
+                'religion': religion,
+                'phone_number': phone_number,
+                'status': status,
+                'birthplace': birthplace,
+            })
+
+            #upload product image
+            storage.child(img_file_directory).put(resident_image)
+
+            return HttpResponse('Success!')
+        except requests.HTTPError as e:
+            error_json = e.args[1]
+            error = json.loads(error_json)['error']['message']
+            if error == "EMAIL_EXISTS":
+                return HttpResponse('Email Already Exists!')
+
+def asd(request):
+    return render(request,'pdf_generated/building_permit.html')
 
 
 

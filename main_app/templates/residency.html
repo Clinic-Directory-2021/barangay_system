@@ -26,6 +26,15 @@
                               <li class="nav-item">
                                 <a class="nav-link fg-white" href="{% url 'summary' %}">Wiring</a>
                               </li>
+                              <li class="nav-item">
+                                <a class="nav-link fg-white" href="{% url 'fencing' %}">Fencing</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link fg-white" href="{% url 'water' %}">Water</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link fg-white" href="{% url 'excavation' %}">Excavation</a>
+                              </li>
                           </ul>
                     </tr>
                     <tr>
@@ -41,7 +50,7 @@
                        <td>{{certificate.resident_full_name}}</td>
                        <td>{{certificate.date}}</td>
                        <td>{{certificate.clearance_type}}</td>
-                       <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{certificate.indigent_pdf_url}}')"></button></td>
+                       <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{certificate.residency_pdf_url}}')"></button></td>
                    </tr>
                  </tbody>
                  {% endfor %}

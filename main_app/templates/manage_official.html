@@ -6,7 +6,7 @@
     </header>
     <h3 class="p-5">Manage Officials</h3>
     <div class="m-5" style="width:80%;">
-        <button class="button primary" style="float: right;"><icon class="mif-add icon mr-3"></icon>Add Official</button>
+        <button class="button primary" style="float: right;"  onclick="Metro.dialog.open('#add_official')"><icon class="mif-add icon mr-3"></icon>Add Official</button>
         <br>
         <br>
         <table class="table striped table-border mt-4"
@@ -34,7 +34,7 @@
                         <td>Campupot</td>
                         <td>
                             <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000"></button>
+                            data-popover-position="top" data-popover-hide="1000" onclick="Metro.dialog.open('#edit_official')"></button>
                             <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000"></button>
                         </td>
@@ -42,5 +42,81 @@
                 </tbody>
         </table>
     </div>
+</div>
+
+<!--Add Official -->
+<div class="dialog w-50" data-role="dialog" id="add_official" style="overflow-y: auto;">
+    <form method="post">
+    {% csrf_token %}
+    <div class="dialog-title bg-blue">Add Resident Form</div>
+        <div class="dialog-content">
+        <div class="card-content p-2">
+            <img src="http://lorempixel.com/1000/600/" style="width: 50%">
+        </div>    
+        <input type="file" data-role="file" data-prepend="Change logo" class="w-50">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" placeholder="Enter full name" id="full_name" name="full_name"/>
+            </div>
+            <div class="form-group">
+                <label>Enter Position</label>
+                <input type="text" placeholder="Enter Position" id="position" name="position"/>
+            </div>
+            <div class="form-group">
+                <label>Enter Term Duration</label>
+                <input type="text" placeholder="Enter Term duration" id="term_duration" name="term_duration"/>
+            </div>
+            <div class="form-group">
+                <label>Enter Status</label>
+                <input type="text" placeholder="Enter Status" id="status" name="status"/>
+            </div>
+            <div class="form-group">
+                <label>Enter Purok</label>
+                <input type="text" placeholder="Enter Purok" id="purok" name="purok"/>
+            </div>
+    </div>
+    <div class="dialog-actions">
+        <button class="button js-dialog-close">Cancel</button>
+        <button class="button success js-dialog-close">Create Official</button>
+    </div>
+    </form>
+</div>
+
+<!--Edit Official -->
+<div class="dialog w-50" data-role="dialog" id="edit_official" style="overflow-y: auto;">
+    <form method="post">
+    {% csrf_token %}
+    <div class="dialog-title bg-green">Edit Resident</div>
+        <div class="dialog-content">
+        <div class="card-content p-2">
+            <img src="http://lorempixel.com/1000/600/" style="width: 50%">
+        </div>    
+        <input type="file" data-role="file" data-prepend="Change logo" class="w-50">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="full name" id="full_name" name="full_name"/>
+            </div>
+            <div class="form-group">
+                <label>Position</label>
+                <input type="text" placeholder="Position" id="position" name="position"/>
+            </div>
+            <div class="form-group">
+                <label>Term Duration</label>
+                <input type="text" placeholder="Term duration" id="term_duration" name="term_duration"/>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <input type="text" placeholder="Status" id="status" name="status"/>
+            </div>
+            <div class="form-group">
+                <label>Purok</label>
+                <input type="text" placeholder="Purok" id="purok" name="purok"/>
+            </div>
+    </div>
+    <div class="dialog-actions">
+        <button class="button js-dialog-close">Cancel</button>
+        <button class="button primary js-dialog-close">Edit Official</button>
+    </div>
+    </form>
 </div>
 {% endblock content %}

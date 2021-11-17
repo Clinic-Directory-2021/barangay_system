@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="add_resident_content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <form id="editResidentForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+    <h3 class="p-5">Edit Resident</h3>
+    <div style="display: flex;">
+        <div style="width: 20%;">
+            <div class="card">
+                <div class="card-header">
+                </div>
+                <div class="card-content p-2">
+                    <img src="http://lorempixel.com/1000/600/" style="width: 100%" id="resident_preview_img">
+                </div>
+                <input type="file" data-role="file" data-prepend="Change Picture" id="resident_image" required>    
+            </div>
+        </div>
+        <div style="width: 60%;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th colspan="2" style="text-align: center;">Resident Form</th>
+                </tr>
+                </thead>
+                <input type="hidden" value="{{resident_id}}" id="resident_id" />
+                <input type="hidden" value="{{old_img_file_directory}}" id="old_img_file_directory" />
+                <tbody>
+                <tr>
+                    <td>
+                        <p><b>First Name</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter first name" id="first_name" required>
+                    </td>
+                    <td>
+                        <p><b>Email</b></p>
+                        <input type="email" data-role="input" class="" value="{{email}}" id="email" disabled>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Midle Name</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter middle name" id="middle_name" required>
+                    </td>
+                    <td>
+                        <p><b>Street</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter street" id="street" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Last Name</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter last name" id="last_name" required>
+                    </td>
+                    <td>
+                        <p><b>Purok/Area</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter purok or area" id="purok" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Gender</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter gender" id="gender" required>
+                    </td>
+                    <td>
+                        <p><b>Citizenship</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter citizenship" id="citizenship" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Civil Status</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Civil Status" id="civil_status" required>
+                    </td>
+                    <td>
+                        <p><b>Differently Disabled Person</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Differently Disabled Person" id="diff_disabled" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Age</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Age" id="age" required>
+                    </td>
+                    <td>
+                        <p><b>Relation to Head Family</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Relation to head family" id="relation" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Birth Date</b></p>
+                        <input type="date" data-role="input" class="" placeholder="Enter birth date" id="birthdate" required>
+                    </td>
+                    <td>
+                        <p><b>Religion</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter religion" id="religion" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Phone Number</b></p>
+                        <input type="number" data-role="input" class="" placeholder="Enter Phone Number" id="phone_number" required>
+                    </td>
+                    <td>
+                        <p><b>Status</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Status" id="status" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p><b>Birthplace</b></p>
+                        <input type="text" data-role="input" class="" placeholder="Enter Birthplace" id="birthplace" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="button success" id="editResidentBtn">Edit</button>
+                        <button class="button warning">Cancel</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        
+        </div>
+    </div>
+    </form>
+</div>
+{% endblock content %}

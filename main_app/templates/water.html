@@ -12,13 +12,13 @@
                     <tr>
                         <ul class="nav nav-tabs bg-grayBlue">
                             <li class="nav-item">
-                              <a class="nav-link fg-white" aria-current="page" href="{% url 'manage_certificate' %}">Clearance</a>
+                              <a class="nav-link fg-white" aria-current="page" href="#">Clearance</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fg-white" fg-white href="{% url 'indigency' %}">Indigency</a>
                               </li>
                             <li class="nav-item">
-                              <a class="nav-link active" href="{% url 'business' %}">Building Permit</a>
+                              <a class="nav-link fg-white" href="{% url 'business' %}">Building Permit</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link fg-white" href="{% url 'residency' %}">Residency</a>
@@ -30,7 +30,7 @@
                                 <a class="nav-link fg-white" href="{% url 'fencing' %}">Fencing</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link fg-white" href="{% url 'water' %}">Water</a>
+                                <a class="nav-link active" href="{% url 'water' %}">Water</a>
                               </li>
                               <li class="nav-item">
                                 <a class="nav-link fg-white" href="{% url 'excavation' %}">Excavation</a>
@@ -38,19 +38,20 @@
                           </ul>
                     </tr>
                     <tr>
-                      <th>RESIDENT NAME</th>
-                      <th>DATE ISSUED</th>
-                      <th>CERTIFICATE TYPE</th>
-                      <th>TOOLS</th>
+                        <th>RESIDENT NAME</th>
+                        <th>DATE ISSUED</th>
+                        <th>CERTIFICATE TYPE</th>
+                        <th>TOOLS</th>
                     </tr>
                 </thead>
+                
                 {% for certificate in certificates %}                                                  
                 <tbody>
                    <tr>
                        <td>{{certificate.resident_full_name}}</td>
                        <td>{{certificate.date}}</td>
                        <td>{{certificate.clearance_type}}</td>
-                       <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{certificate.building_pdf_url}}')"></button></td>
+                       <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{certificate.water_pdf_url}}')"></button></td>
                    </tr>
                  </tbody>
                  {% endfor %}

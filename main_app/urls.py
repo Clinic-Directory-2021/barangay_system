@@ -35,12 +35,17 @@ urlpatterns = [
     path('business/', views.business, name="business"),
     path('residency/', views.residency, name="residency"),
     path('summary/', views.summary, name="summary"),
+    path('fencing/', views.fencing, name="fencing"),
+    path('water/', views.water, name="water"),
+    path('excavation/', views.excavation, name="excavation"),
     path('report/', views.report, name="report"),
     path('login_validation/', views.login_validation, name="login_validation"),
     path('logout/', views.logout, name="logout"),
     path('addResident/', views.addResident, name="addResident"),
-
+    path('edit_resident/', views.edit_resident, name="edit_resident"),
     path('delete_resident/', views.delete_resident, name="delete_resident"),
+    path('asd/', views.asd, name="asd"),
+    path('editResidentFirebase/', views.editResidentFirebase, name="editResidentFirebase"),
     
     #render_pdf files
     path('generate_indigent/', views.generate_indigent, name="generate_indigent"),
