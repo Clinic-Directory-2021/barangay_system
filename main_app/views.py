@@ -76,7 +76,6 @@ def list_of_official(request):
     official_data = []
 
     for official in officials:
-        print(official.to_dict())
         value = official.to_dict()
         official_data.append(value)
     
@@ -871,7 +870,7 @@ def generate_blotter(request):
         template = get_template(template_path)
         html = template.render(context)
         result = BytesIO()
-        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1", 'ignore')), result)
         
         if not pdf.err:
 

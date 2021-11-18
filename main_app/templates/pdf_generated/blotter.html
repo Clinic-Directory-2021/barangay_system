@@ -1,18 +1,164 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Building Permit</title>
+    <style type="text/css">
+           header{
+               text-align: center;
+           }
+    </style>
 </head>
 <body>
-    {{summon_date}}
+    <header>
+        <img src="{% static 'images/table.jpg' %}" alt="image" width="100" height="100" name="image">
+        <div>
+            REPUBLIC OF THE PHILIPPINES<br>
+            PROVINCE OF BULACAN<br>
+            MUNICIPALITY OF PULILAN<br>
+            <text style="color:blue">BARANGAY TINJERO</text><br>
+        </div>
+        <img src="{% static 'images/table.jpg' %}" alt="image" width="100" height="100">
+    </header>
+    <hr>
+    <table>
+        <thead>
+            <th>
+            
+            </th>
+            <th>
+            
+            </th>
+            <th>
+            
+            </th>
+            <th>
+            
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid black; text-align: center; padding: 5px;">
+                    <strong><text style="font-size: 16px;">BARANGAY OFFICIALS</text></strong>
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">NUMERIANO B. LEONARDO</text></strong>
+                    <br>
+                    Barangay Captain
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">RENANTE S. LAHANA</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">CHRISTOPHER C. LAZARO</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">JERRY P. RAMOS</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">ALBERTO V. CALDERON</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">JOSELITO V. ARCEO</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">NOELITO Y. ARCEO</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">TERESITA B. BEÑREZ</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">DIVINA I. SANTOS</text></strong>
+                    <br>
+                    SK CHAIRPERSON
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">MANOLITO C. DE GUZMAN</text></strong>
+                    <br>
+                    BARANGAY SECRETARY
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">TERESITA G. TAGALAG</text></strong>
+                    <br>
+                    BARANGAY TREASURER
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">REYNALDO R. REYES</text></strong>
+                    <br>
+                    TANOD CHIEF
+                    <br>
+                    <br>
+                </td>
+                <td colspan="3" style="text-align: center;">
+                    <h3 align="center" style="font-size: 18px">WATER INSTALLATION PERMIT</h3>
+                    <p style="font-size: 16px;">To Whom It May Concern:<br><br><br><br>
+                        Para kay 
+                        {% for recipient in recipients %}
+                            <u>{{recipient}}</u><br>
+                        {% endfor %}
+                        <br>
+                        Kayo po ay inaanyayahan na magsadya rito sa Barangay Hall ng Tinejero, Pulilan, <br>
+                        Bulacan upang mapag-usapan ang sigalot o gusot na namamagitan sa inyo ni <br>
+                        Ginoong/Ginang/Bb. <u>{{blotter_full_name}}</u>.<br>
+
+                        Kayo po ay hihintayin ng aming Tanggapan sa Ika-{{summon_date}}<br>
+                        sa oras na ika-{{summon_time}}.<br>
+
+                        Huwag po sana ninyong ipagwalang bahal ang panawagang ito upang hindi kayo <br>
+                        panagutin sa salang “Indirect Contempt” na tinadhana sa ating batas pang lokal.<br>
+
+                        Mangyari po lamang na dumating sila sa oras na nabanggit sa itaas nito.<br>
+
+                    
+                    <br>
+                    </p>
+                    <br>
+                    <br>
+                    <br>
+                    <h5 style="font-size: 18px;"><u>NUMERIA NO B. LEONARDO</u></h5>
+                    <u style="font-size: 16px;">Barangay Captain</u>]
+                    <br>
+                    <br>
+                    <br>
+                    Not valid without a seal
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+<!-- {{summon_date}}
     {{blotter_full_name}}
     {{summon_time}}
 
     
     {% for recipient in recipients %}
         {{recipient}}
-    {% endfor %}
-        
-    
-</body>
-</html>
+    {% endfor %} -->
