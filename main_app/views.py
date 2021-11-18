@@ -71,10 +71,32 @@ def homepage(request):
         return redirect('/')
 
 def list_of_official(request):
-    return render(request,'list_of_official.html')
+    officials = firestoreDB.collection('official_lists').get()
+
+    official_data = []
+
+    for official in officials:
+        value = official.to_dict()
+        official_data.append(value)
+    
+    data = {
+        'official_data': official_data,
+    }
+    return render(request,'list_of_official.html', data)
 
 def manage_official(request):
-    return render(request,'manage_official.html')
+    officials = firestoreDB.collection('official_lists').get()
+
+    official_data = []
+
+    for official in officials:
+        value = official.to_dict()
+        official_data.append(value)
+    
+    data = {
+        'official_data': official_data,
+    }
+    return render(request,'manage_official.html', data)
 
 def resident_record(request):
     residents = firestoreDB.collection('resident_list').get()
@@ -266,9 +288,16 @@ def report(request):
 
     blotters = firestoreDB.collection('list_of_issued_certificate_blotter').get()
 
+
+    officials = firestoreDB.collection('official_lists').get()
+
     total_residents = 0
     total_certificates = 0
     total_blotter = 0
+    total_officials = 0
+
+    for official in officials:
+        total_officials += 1
 
     for blotter in blotters:
         total_blotter += 1
@@ -305,6 +334,7 @@ def report(request):
         'total_residents': total_residents,
         'total_certificates': total_certificates,
         'total_blotter': total_blotter,
+        'total_officials': total_officials,
     }
     return render(request,'report.html', data)
 
@@ -915,7 +945,7 @@ def editResidentFirebase(request):
             #delete the old picture
             storage.delete(old_img_file_directory, resident_id)
             
-            #upload product image
+            #upload resident image
             storage.child(img_file_directory).put(resident_image, resident_id)
 
             doc_ref = firestoreDB.collection('resident_list').document(resident_id)
@@ -953,6 +983,7 @@ def editResidentFirebase(request):
                 return HttpResponse('Email Already Exists!')
 
 def asd(request):
+<<<<<<< HEAD
     return render(request,'pdf_generated/indigency.html')
 
 
@@ -986,6 +1017,91 @@ def link_callback(uri, rel):
                             'media URI must start with %s or %s' % (sUrl, mUrl)
                     )
             return path
+=======
+    return render(request,'pdf_generated/building_permit.html')
+
+def add_official_firebase(request):
+    if request.method == 'POST':
+        official_image =  request.FILES['official_image']
+
+        full_name = request.POST.get('full_name')
+        position = request.POST.get('position')
+        term_duration = request.POST.get('term_duration')
+        status = request.POST.get('status')
+        purok = request.POST.get('purok')
+
+        try:
+            
+        
+            doc_ref = firestoreDB.collection('official_lists').document()
+
+            file_name = full_name+".jpg"
+            img_file_directory = "officials_folder/"+doc_ref.id+ "/official_image/" + file_name
+
+            #upload official image
+            storage.child(img_file_directory).put(official_image)
+
+            doc_ref.set({
+                'official_id': doc_ref.id,
+                'official_img_url' : storage.child(img_file_directory).get_url(None),
+                'official_img_directory' : img_file_directory,
+                'full_name': full_name,
+                'position': position,
+                'term_duration': term_duration,
+                'status': status,
+                'purok': purok,
+            })
+
+            return redirect('manage_official')
+        except requests.HTTPError as e:
+            return redirect('manage_official')
+
+def edit_official_firebase(request):
+    if request.method == 'POST':
+        official_image =  request.FILES['official_image_edit']
+
+        official_id_edit = request.POST.get('official_id_edit')
+        old_official_img_directory = request.POST.get('old_official_img_directory')
+
+        full_name = request.POST.get('full_name')
+        position = request.POST.get('position')
+        term_duration = request.POST.get('term_duration')
+        status = request.POST.get('status')
+        purok = request.POST.get('purok')
+
+        #delete the old picture
+        storage.delete(old_official_img_directory, official_id_edit)
+        
+        doc_ref = firestoreDB.collection('official_lists').document(official_id_edit)
+
+        file_name = full_name+".jpg"
+        img_file_directory = "officials_folder/"+doc_ref.id+ "/official_image/" + file_name
+
+        #upload official image
+        storage.child(img_file_directory).put(official_image)
+
+        doc_ref.update({
+            'official_img_url' : storage.child(img_file_directory).get_url(None),
+            'official_img_directory' : img_file_directory,
+            'full_name': full_name,
+            'position': position,
+            'term_duration': term_duration,
+            'status': status,
+            'purok': purok,
+        })
+        return redirect('manage_official')
+
+def delete_Official(request):
+    if request.method == 'GET':
+        official_id = request.GET.get('official_id')
+        official_img_directory = request.GET.get('official_img_directory')
+
+        firestoreDB.collection('official_lists').document(official_id).delete()
+
+        storage.delete(official_img_directory, None)
+
+        return redirect('manage_official')      
+>>>>>>> 1dfb87d2e271080b8f7fc1591442f85038e94412
 
 
         # # Create a Django response object, and specify content_type as pdf

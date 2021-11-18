@@ -46,7 +46,12 @@ urlpatterns = [
     path('delete_resident/', views.delete_resident, name="delete_resident"),
     path('asd/', views.asd, name="asd"),
     path('editResidentFirebase/', views.editResidentFirebase, name="editResidentFirebase"),
-    
+
+    #Officials CRUD
+    path('add_official_firebase/', views.add_official_firebase, name="add_official_firebase"),
+    path('edit_official_firebase/', views.edit_official_firebase, name="edit_official_firebase"),
+    path('delete_Official/', views.delete_Official, name="delete_Official"),
+
     #render_pdf files
     path('generate_indigent/', views.generate_indigent, name="generate_indigent"),
     path('generate_clearance/', views.generate_clearance, name="generate_clearance"),
