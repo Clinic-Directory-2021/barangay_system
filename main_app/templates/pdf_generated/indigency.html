@@ -1,15 +1,159 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Building Permit</title>
+    <style type="text/css">
+           header{
+               text-align: center;
+           }
+    </style>
 </head>
 <body>
-    {{purpose}}
+    <header>
+        <img src="{% static 'images/table.jpg' %}" alt="image" width="100" height="100" name="image">
+        <div>
+            REPUBLIC OF THE PHILIPPINES<br>
+            PROVINCE OF BULACAN<br>
+            MUNICIPALITY OF PULILAN<br>
+            <text style="color:blue">BARANGAY TINJERO</text><br>
+        </div>
+        <img src="{% static 'images/table.jpg' %}" alt="image" width="100" height="100">
+    </header>
+    <hr>
+    <table>
+        <thead>
+            <th>
+            
+            </th>
+            <th>
+            
+            </th>
+            <th>
+            
+            </th>
+            <th>
+            
+            </th>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid black; text-align: center; padding: 5px;">
+                    <strong><text style="font-size: 16px;">BARANGAY OFFICIALS</text></strong>
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">NUMERIANO B. LEONARDO</text></strong>
+                    <br>
+                    Barangay Captain
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">RENANTE S.LAHANA</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">CHRISTOPHER C. LAZARO</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">JERRY P. RAMOS</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">ALBERTO V. CALDERON</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">JOSELITO V. ARCEO</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">NOELITO Y. ARCEO</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">TERESITA B. BEÑREZ</text></strong>
+                    <br>
+                    COUNSILOR
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">DIVINA I. SANTOS</text></strong>
+                    <br>
+                    SK CHAIRPERSON
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">MANOLITO C. DE GUZMAN</text></strong>
+                    <br>
+                    BARANGAY SECRETARY
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">TTERESITA G. TAGALAG</text></strong>
+                    <br>
+                    BARANGAY TREASURER
+                    <br>
+                    <br>
+
+                    <strong><text style="font-size: 16px;">REYNALDO R. REYES</text></strong>
+                    <br>
+                    TANOD CHIEF
+                    <br>
+                    <br>
+                </td>
+                <td colspan="3" style="text-align: center;">
+                    <h3 align="center" style="font-size: 18px">CERTIFICATE OF INDIGENCY</h3>
+                    <p style="font-size: 16px;">To Whom It May Concern:<br><br><br><br>
+                    This is to certify that <u>{{indigent_full_name}}</u>, <u>{{indigent_age}}</u> of age and<br><br>
+                    presently residing at Barangay Tinejero, Pulilan, Bulacan is one the Indigent Families here in our<br>
+                    Barangay.<br><br>
+                    In connection to this<br><br>
+                    ( ) Medical Assistance<br>
+                    ( ) Burial Assistance<br>
+                    ( ) Hospital Bill <br>
+                    ( ) Education Bill <br>
+                    ( ) and others ____________________(please specify)<br><br><br>
+                    This certification is being issued upon the request of the above-named person to used for<br><br>
+                    any legal intent purpose it may serve him her best<br><br>
+                    Given this <u>{{date}}</u> here at Barangay Tinejero, Pulila,<br><br>
+                    Bulacan.
+                    <br>
+                    <br>
+                    <br>
+                    <h5 style="font-size: 18px;"><u>NUMERIA NO B. LEONARDO</u></h5>
+                    <u style="font-size: 16px;">Barangay Captain</u>]
+                    <br>
+                    <br>
+                    Note: NOT FOR SOLICITATION PURPOSES;
+                    <br>
+                    <br>
+                    <br>
+                    Not valid without a seal
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+<!-- {{purpose}}
 
     {{date}}
 
     {{indigent_full_name}}
 
-    {{indigent_age}}
-</body>
-</html>
+    {{indigent_age}} -->
