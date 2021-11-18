@@ -983,42 +983,7 @@ def editResidentFirebase(request):
                 return HttpResponse('Email Already Exists!')
 
 def asd(request):
-<<<<<<< HEAD
     return render(request,'pdf_generated/indigency.html')
-
-
-def link_callback(uri, rel):
-            """
-            Convert HTML URIs to absolute system paths so xhtml2pdf can access those
-            resources
-            """
-            result = finders.find(uri)
-            if result:
-                    if not isinstance(result, (list, tuple)):
-                            result = [result]
-                    result = list(os.path.realpath(path) for path in result)
-                    path=result[0]
-            else:
-                    sUrl = settings.STATIC_URL        # Typically /static/
-                    sRoot = settings.STATIC_ROOT      # Typically /home/userX/project_static/
-                    mUrl = settings.MEDIA_URL         # Typically /media/
-                    mRoot = settings.MEDIA_ROOT       # Typically /home/userX/project_static/media/
-
-                    if uri.startswith(mUrl):
-                            path = os.path.join(mRoot, uri.replace(mUrl, ""))
-                    elif uri.startswith(sUrl):
-                            path = os.path.join(sRoot, uri.replace(sUrl, ""))
-                    else:
-                            return uri
-
-            # make sure that file exists
-            if not os.path.isfile(path):
-                    raise Exception(
-                            'media URI must start with %s or %s' % (sUrl, mUrl)
-                    )
-            return path
-=======
-    return render(request,'pdf_generated/building_permit.html')
 
 def add_official_firebase(request):
     if request.method == 'POST':
@@ -1101,7 +1066,6 @@ def delete_Official(request):
         storage.delete(official_img_directory, None)
 
         return redirect('manage_official')      
->>>>>>> 1dfb87d2e271080b8f7fc1591442f85038e94412
 
 
         # # Create a Django response object, and specify content_type as pdf
