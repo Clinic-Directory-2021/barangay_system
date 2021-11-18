@@ -25,20 +25,30 @@
                 </tr>
                 </thead>
                 <tbody>
+                    
+                    {% for official in official_data %}
                     <tr>
-                        <td><img src="../static/images/idea.png" alt=""></td>
-                        <td>Divina Santos</td>
-                        <td>SK CHAIRMAN</td>
-                        <td>JULY 20, 2019 - JULY 20, 2020</td>
-                        <td>Active</td>
-                        <td>Campupot</td>
+                        <td><img src="{{official.official_img_url}}" alt=""></td>
+                        <td>{{official.full_name}}</td>
+                        <td>{{official.position}}</td>
+                        <td>{{official.term_duration}}</td>
+                        <td>{{official.status}}</td>
+                        <td>{{official.purok}}</td>
                         <td>
                             <button class="button success mif-pencil icon" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000" onclick="Metro.dialog.open('#edit_official')"></button>
+                            data-popover-position="top" data-popover-hide="1000" onclick="Metro.dialog.open('#edit_official'), 
+                            editOfficial('{{official.official_id}}', 
+                            '{{official.full_name}}', 
+                            '{{official.position}}',
+                            '{{official.term_duration}}',
+                            '{{official.status}}',
+                            '{{official.purok}}',
+                            '{{official.official_img_directory}}')"></button>
                             <button class="button secondary mif-bin "  data-role="popover" data-popover-text="Delete"
-                            data-popover-position="top" data-popover-hide="1000"></button>
+                            data-popover-position="top" data-popover-hide="1000" onclick="deleteOfficial('{{official.official_id}}' , '{{official.official_img_directory}}')"></button>
                         </td>
                     </tr>
+                    {% endfor %}
                 </tbody>
         </table>
     </div>
@@ -46,76 +56,79 @@
 
 <!--Add Official -->
 <div class="dialog w-50" data-role="dialog" id="add_official" style="overflow-y: auto;">
-    <form method="post">
+    <form action="/add_official_firebase/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="dialog-title bg-blue">Add Resident Form</div>
         <div class="dialog-content">
         <div class="card-content p-2">
-            <img src="http://lorempixel.com/1000/600/" style="width: 50%">
+            <img src="http://lorempixel.com/1000/600/" style="width: 50%" id="official_preview_img">
         </div>    
-        <input type="file" data-role="file" data-prepend="Change logo" class="w-50">
+        <input type="file" data-role="file" data-prepend="Change logo" class="w-50" id="official_image" name="official_image" required>
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" placeholder="Enter full name" id="full_name" name="full_name"/>
+                <input type="text" placeholder="Enter full name" id="full_name" name="full_name" required/>
             </div>
             <div class="form-group">
                 <label>Enter Position</label>
-                <input type="text" placeholder="Enter Position" id="position" name="position"/>
+                <input type="text" placeholder="Enter Position" id="position" name="position" required/>
             </div>
             <div class="form-group">
                 <label>Enter Term Duration</label>
-                <input type="text" placeholder="Enter Term duration" id="term_duration" name="term_duration"/>
+                <input type="text" placeholder="Enter Term duration" id="term_duration" name="term_duration" required/>
             </div>
             <div class="form-group">
                 <label>Enter Status</label>
-                <input type="text" placeholder="Enter Status" id="status" name="status"/>
+                <input type="text" placeholder="Enter Status" id="status" name="status" required/>
             </div>
             <div class="form-group">
                 <label>Enter Purok</label>
-                <input type="text" placeholder="Enter Purok" id="purok" name="purok"/>
+                <input type="text" placeholder="Enter Purok" id="purok" name="purok" required/>
             </div>
     </div>
     <div class="dialog-actions">
-        <button class="button js-dialog-close">Cancel</button>
-        <button class="button success js-dialog-close">Create Official</button>
+        <button type="button" class="button js-dialog-close">Cancel</button>
+        <button type="submit" class="button primary">Create Official</button>
     </div>
     </form>
 </div>
 
 <!--Edit Official -->
 <div class="dialog w-50" data-role="dialog" id="edit_official" style="overflow-y: auto;">
-    <form method="post">
+    <form action="/edit_official_firebase/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="dialog-title bg-green">Edit Resident</div>
         <div class="dialog-content">
         <div class="card-content p-2">
-            <img src="http://lorempixel.com/1000/600/" style="width: 50%">
+            <img src="http://lorempixel.com/1000/600/" style="width: 50%" id="official_preview_img_edit">
         </div>    
-        <input type="file" data-role="file" data-prepend="Change logo" class="w-50">
+        <input type="file" data-role="file" data-prepend="Change logo" class="w-50" id="official_image_edit" name="official_image_edit" required>
             <div class="form-group">
                 <label>Full Name</label>
-                <input type="text" placeholder="full name" id="full_name" name="full_name"/>
+                <input type="text" placeholder="full name" id="full_name_edit" name="full_name" required/>
             </div>
             <div class="form-group">
                 <label>Position</label>
-                <input type="text" placeholder="Position" id="position" name="position"/>
+                <input type="text" placeholder="Position" id="position_edit" name="position" required/>
             </div>
             <div class="form-group">
                 <label>Term Duration</label>
-                <input type="text" placeholder="Term duration" id="term_duration" name="term_duration"/>
+                <input type="text" placeholder="Term duration" id="term_duration_edit" name="term_duration" required/>
             </div>
             <div class="form-group">
                 <label>Status</label>
-                <input type="text" placeholder="Status" id="status" name="status"/>
+                <input type="text" placeholder="Status" id="status_edit" name="status" required/>
             </div>
             <div class="form-group">
                 <label>Purok</label>
-                <input type="text" placeholder="Purok" id="purok" name="purok"/>
+                <input type="text" placeholder="Purok" id="purok_edit" name="purok" required/>
             </div>
+            <input type="hidden" id="official_id_edit" name="official_id_edit">
+            <input type="hidden" id="old_official_img_directory" name="old_official_img_directory">
+            
     </div>
     <div class="dialog-actions">
-        <button class="button js-dialog-close">Cancel</button>
-        <button class="button primary js-dialog-close">Edit Official</button>
+        <button type="button" class="button js-dialog-close">Cancel</button>
+        <button type="submit" class="button primary">Edit Official</button>
     </div>
     </form>
 </div>
