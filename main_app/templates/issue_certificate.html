@@ -25,19 +25,23 @@
                     <tr>
                         <td>{{resident.status}}</td>
                         <td><img src="{{resident.resident_img_url}}" alt="" width="15%"></td>
-                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
+                        <td>{{resident.full_name}}</td>
                         <td>{{resident.gender}}</td>
                         <td>
-                            
+                            {% if resident.certificate_type == 'Clearance' %}
                             <button class="button light" data-role="popover" data-popover-text="View"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#clearanceModal" onclick="clearanceModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-profile icon mr-5"></icon>Clearance</button>
                             
+                            {% elif resident.certificate_type == 'Indegency'%}
+
                             <button class="button success" data-role="popover" data-popover-text="View"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#indigentModal" onclick="indigentModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
                             
+                            {% elif resident.certificate_type == 'Building Permit'%}
                             <button class="button secondary" data-role="popover" data-popover-text="Edit"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#buildingModal" onclick="buildingModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-event-busy icon mr-5"></icon>Building Permit</button>
-
+                            
+                            {% elif resident.certificate_type == 'Residency'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#residencyModal" 
                             onclick="residencyModal('{{resident.first_name}}', 
@@ -49,6 +53,7 @@
                             '{{resident.civil_status}}',
                             '{{resident.birthplace}}');"><icon class="mif-flag icon mr-5"></icon>Barangay Residency</button>
 
+                            {% elif resident.certificate_type == 'Wiring'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#wiringModal" 
                             onclick="wiringModal('{{resident.first_name}}', 
@@ -56,7 +61,8 @@
                             '{{resident.last_name}}',
                             '{{resident.resident_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Wiring Permit</button>
-                            
+
+                            {% elif resident.certificate_type == 'Excavation'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#excavationModal" 
                             onclick="excavationModal('{{resident.first_name}}', 
@@ -65,6 +71,7 @@
                             '{{resident.resident_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Excavation Clearance</button>
 
+                            {% elif resident.certificate_type == 'Fencing'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#fencingModal" 
                             onclick="fencingModal('{{resident.first_name}}', 
@@ -73,6 +80,7 @@
                             '{{resident.resident_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Fencing Clearance</button>
 
+                            {% elif resident.certificate_type == 'Water'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#waterModal" 
                             onclick="waterModal('{{resident.first_name}}', 
@@ -81,6 +89,7 @@
                             '{{resident.resident_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Water Installation Permit</button>
 
+                            {% elif resident.certificate_type == 'Blotter'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#blotterModal" 
                             onclick="blotterModal('{{resident.first_name}}', 
@@ -88,6 +97,7 @@
                             '{{resident.last_name}}',
                             '{{resident.resident_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Blotter</button>
+                            {% endif %}
                         </td>
                     </tr>
                 </tbody>

@@ -149,7 +149,7 @@ def edit_blotter_records(request):
     return render(request,'edit_blotter_records.html')
 
 def issue_certificate(request):
-    residents = firestoreDB.collection('resident_list').get()
+    residents = firestoreDB.collection('certificate_requests').get()
 
     resident_data = []
 
