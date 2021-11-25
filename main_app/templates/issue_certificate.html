@@ -25,7 +25,7 @@
                     <tr>
                         <td>{{resident.status}}</td>
                         <td><img src="{{resident.resident_img_url}}" alt="" width="15%"></td>
-                        <td>{{resident.full_name}}</td>
+                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
                         <td>{{resident.gender}}</td>
                         <td>
                             {% if resident.certificate_type == 'Clearance' %}
