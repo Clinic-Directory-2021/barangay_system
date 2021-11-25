@@ -30,16 +30,16 @@
                         <td>
                             {% if resident.certificate_type == 'Clearance' %}
                             <button class="button light" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#clearanceModal" onclick="clearanceModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-profile icon mr-5"></icon>Clearance</button>
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#clearanceModal" onclick="clearanceModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}', '{{resident.request_id}}');"><icon class="mif-profile icon mr-5"></icon>Clearance</button>
                             
                             {% elif resident.certificate_type == 'Indegency'%}
 
                             <button class="button success" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#indigentModal" onclick="indigentModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#indigentModal" onclick="indigentModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}', '{{resident.request_id}}');"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
                             
                             {% elif resident.certificate_type == 'Building Permit'%}
                             <button class="button secondary" data-role="popover" data-popover-text="Edit"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#buildingModal" onclick="buildingModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}');"><icon class="mif-event-busy icon mr-5"></icon>Building Permit</button>
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#buildingModal" onclick="buildingModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}', '{{resident.request_id}}');"><icon class="mif-event-busy icon mr-5"></icon>Building Permit</button>
                             
                             {% elif resident.certificate_type == 'Residency'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
@@ -51,7 +51,8 @@
                             '{{resident.resident_id}}',
                             '{{resident.birthdate}}',
                             '{{resident.civil_status}}',
-                            '{{resident.birthplace}}');"><icon class="mif-flag icon mr-5"></icon>Barangay Residency</button>
+                            '{{resident.birthplace}}',
+                            '{{resident.request_id}}');"><icon class="mif-flag icon mr-5"></icon>Barangay Residency</button>
 
                             {% elif resident.certificate_type == 'Wiring'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
@@ -59,7 +60,8 @@
                             onclick="wiringModal('{{resident.first_name}}', 
                             '{{resident.middle_name}}',
                             '{{resident.last_name}}',
-                            '{{resident.resident_id}}');">
+                            '{{resident.resident_id}}', 
+                            '{{resident.request_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Wiring Permit</button>
 
                             {% elif resident.certificate_type == 'Excavation'%}
@@ -68,7 +70,8 @@
                             onclick="excavationModal('{{resident.first_name}}', 
                             '{{resident.middle_name}}',
                             '{{resident.last_name}}',
-                            '{{resident.resident_id}}');">
+                            '{{resident.resident_id}}', 
+                            '{{resident.request_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Excavation Clearance</button>
 
                             {% elif resident.certificate_type == 'Fencing'%}
@@ -77,7 +80,8 @@
                             onclick="fencingModal('{{resident.first_name}}', 
                             '{{resident.middle_name}}',
                             '{{resident.last_name}}',
-                            '{{resident.resident_id}}');">
+                            '{{resident.resident_id}}', 
+                            '{{resident.request_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Fencing Clearance</button>
 
                             {% elif resident.certificate_type == 'Water'%}
@@ -86,7 +90,8 @@
                             onclick="waterModal('{{resident.first_name}}', 
                             '{{resident.middle_name}}',
                             '{{resident.last_name}}',
-                            '{{resident.resident_id}}');">
+                            '{{resident.resident_id}}', 
+                            '{{resident.request_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Water Installation Permit</button>
 
                             {% elif resident.certificate_type == 'Blotter'%}
@@ -95,7 +100,8 @@
                             onclick="blotterModal('{{resident.first_name}}', 
                             '{{resident.middle_name}}',
                             '{{resident.last_name}}',
-                            '{{resident.resident_id}}');">
+                            '{{resident.resident_id}}', 
+                            '{{resident.request_id}}');">
                             <icon class="mif-flag icon mr-5"></icon>Blotter</button>
                             {% endif %}
                         </td>
@@ -125,6 +131,7 @@
                  <input type="hidden" name="clearance_full_name" id="clearance_full_name"/> 
                  <input type="hidden" name="clearance_age" id="clearance_age"/> 
                  <input type="hidden" name="clearance_resident_id" id="clearance_resident_id"/>
+                 <input type="hidden" name="residency_request_id" id="clearance_request_id"/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -157,6 +164,7 @@
                 <input type="hidden" name="indigent_full_name" id="indigent_full_name"/> 
                 <input type="hidden" name="indigent_age" id="indigent_age"/> 
                 <input type="hidden" name="indigent_resident_id" id="indigent_resident_id"/>
+                <input type="hidden" name="residency_request_id" id="indigent_request_id"/>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -188,6 +196,7 @@
               <input type="hidden" name="building_full_name" id="building_full_name"/> 
               <input type="hidden" name="building_age" id="building_age"/> 
               <input type="hidden" name="building_resident_id" id="building_resident_id"/>
+              <input type="hidden" name="residency_request_id" id="building_request_id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -221,6 +230,7 @@
               <input type="hidden" name="residency_birthdate" id="residency_birthdate"/> 
               <input type="hidden" name="residency_birthplace" id="residency_birthplace">
               <input type="hidden" name="residency_resident_id" id="residency_resident_id"/>
+              <input type="hidden" name="residency_request_id" id="residency_request_id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -253,6 +263,7 @@
               <!-- Hidden Data -->
               <input type="hidden" name="wiring_full_name" id="wiring_full_name"/> 
               <input type="hidden" name="wiring_resident_id" id="wiring_resident_id"/>
+              <input type="hidden" name="residency_request_id" id="wiring_request_id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -286,6 +297,7 @@
               <!-- Hidden Data -->
               <input type="hidden" name="excavation_full_name" id="excavation_full_name"/> 
               <input type="hidden" name="excavation_resident_id" id="excavation_resident_id"/>
+              <input type="hidden" name="residency_request_id" id="excavation_request_id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -318,6 +330,7 @@
               <!-- Hidden Data -->
               <input type="hidden" name="fencing_full_name" id="fencing_full_name"/> 
               <input type="hidden" name="fencing_resident_id" id="fencing_resident_id"/>
+              <input type="hidden" name="residency_request_id" id="fencing_request_id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -350,6 +363,7 @@
               <!-- Hidden Data -->
               <input type="hidden" name="water_full_name" id="water_full_name"/> 
               <input type="hidden" name="water_resident_id" id="water_resident_id"/>
+              <input type="hidden" name="residency_request_id" id="water_request_id"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>
@@ -386,6 +400,7 @@
             <!-- Hidden Data -->
             <input type="hidden" name="blotter_full_name" id="blotter_full_name"/> 
             <input type="hidden" name="blotter_resident_id" id="blotter_resident_id"/>
+            <input type="hidden" name="residency_request_id" id="blotter_request_id"/>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>

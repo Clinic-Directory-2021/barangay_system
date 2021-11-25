@@ -437,6 +437,8 @@ def generate_indigent(request):
         indigent_age = request.POST.get('indigent_age')
         indigent_resident_id = request.POST.get('indigent_resident_id')
 
+        residency_request_id = request.POST.get('residency_request_id')
+
         purpose = purpose.upper()
 
         template_path = 'pdf_generated/indigency.html'
@@ -483,6 +485,24 @@ def generate_indigent(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'indigent_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'indigent_pdf_directory' : pdf_file_directory,
+                'resident_id': indigent_resident_id,
+                'purpose': purpose,
+                'date': date, 
+                'resident_full_name': indigent_full_name,
+                'resident_age': indigent_age,
+                'clearance_type': 'Indigent Certificate',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -493,6 +513,7 @@ def generate_clearance(request):
         clearance_age = request.POST.get('clearance_age')
         clearance_resident_id = request.POST.get('clearance_resident_id')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/clearance.html'
 
@@ -534,6 +555,23 @@ def generate_clearance(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'clearance_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'clearance_pdf_directory' : pdf_file_directory,
+                'resident_id': clearance_resident_id,
+                'date': date, 
+                'resident_full_name': clearance_full_name,
+                'resident_age': clearance_age,
+                'clearance_type': 'Clearance Certificate',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -544,6 +582,7 @@ def generate_building(request):
         building_age = request.POST.get('building_age')
         building_resident_id = request.POST.get('building_resident_id')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/building_permit.html'
 
@@ -584,6 +623,23 @@ def generate_building(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'building_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'building_pdf_directory' : pdf_file_directory,
+                'resident_id': building_resident_id,
+                'date': date, 
+                'resident_full_name': building_full_name,
+                'resident_age': building_age,
+                'clearance_type': 'Building Permit/Clearance',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -597,6 +653,7 @@ def generate_residency(request):
         residency_civil_status = request.POST.get('residency_civil_status')
         residency_birthdate = request.POST.get('residency_birthdate')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/residency.html'
 
@@ -644,6 +701,27 @@ def generate_residency(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'residency_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'residency_pdf_directory' : pdf_file_directory,
+                'resident_id': residency_resident_id,
+                'date': date, 
+                'resident_full_name': residency_full_name,
+                'resident_age': residency_age,
+                'resident_birthplace': birthplace,
+                'resident_civil_status': residency_civil_status,
+                'resident_birthdate': residency_birthdate,
+                'clearance_type': 'Barangay Residency',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -655,6 +733,7 @@ def generate_wiring(request):
         wiring_resident_id = request.POST.get('wiring_resident_id')
         house_location = request.POST.get('house_location')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/wiring_permit.html'
 
@@ -696,6 +775,23 @@ def generate_wiring(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'wiring_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'wiring_pdf_directory' : pdf_file_directory,
+                'resident_id': wiring_resident_id,
+                'date': date, 
+                'resident_full_name': wiring_full_name,
+                'resident_house_location': house_location,
+                'clearance_type': 'Electrical Inspection/Wiring Permit',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -705,6 +801,7 @@ def generate_excavation(request):
         excavation_full_name = request.POST.get('excavation_full_name')
         excavation_resident_id = request.POST.get('excavation_resident_id')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/excavation_clearance.html'
 
@@ -745,6 +842,22 @@ def generate_excavation(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'excavation_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'excavation_pdf_directory' : pdf_file_directory,
+                'resident_id': excavation_resident_id,
+                'date': date, 
+                'resident_full_name': excavation_full_name,
+                'clearance_type': 'Excavation Clearance',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -754,6 +867,7 @@ def generate_fencing(request):
         fencing_full_name = request.POST.get('fencing_full_name')
         fencing_resident_id = request.POST.get('fencing_resident_id')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/fencing_clearance.html'
 
@@ -794,6 +908,22 @@ def generate_fencing(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'fencing_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'fencing_pdf_directory' : pdf_file_directory,
+                'resident_id': fencing_resident_id,
+                'date': date, 
+                'resident_full_name': fencing_full_name,
+                'clearance_type': 'Fencing Clearance',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -803,6 +933,7 @@ def generate_water(request):
         water_full_name = request.POST.get('water_full_name')
         water_resident_id = request.POST.get('water_resident_id')
 
+        residency_request_id = request.POST.get('residency_request_id')
 
         template_path = 'pdf_generated/water_installation_permit.html'
 
@@ -843,6 +974,22 @@ def generate_water(request):
 
             storage.child(pdf_file_directory).put(result.getvalue())
 
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'water_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'water_pdf_directory' : pdf_file_directory,
+                'resident_id': water_resident_id,
+                'date': date, 
+                'resident_full_name': water_full_name,
+                'clearance_type': 'Water Installation Permit',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -853,6 +1000,8 @@ def generate_blotter(request):
         summon_time = request.POST.get('summon_time')
         recipient = request.POST.get('recipient')
         blotter_resident_id = request.POST.get('blotter_resident_id')
+
+        residency_request_id = request.POST.get('residency_request_id')
 
         recipient_list = recipient.split(",")
         
@@ -898,6 +1047,24 @@ def generate_blotter(request):
                 })
 
             storage.child(pdf_file_directory).put(result.getvalue())
+
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'blotter_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'blotter_pdf_directory' : pdf_file_directory,
+                'resident_id': blotter_resident_id,
+                'summon_date': summon_date, 
+                'summon_time': summon_time,
+                'recipient': recipient,
+                'resident_full_name': blotter_full_name,
+                'clearance_type': 'Blotter',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
 
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
