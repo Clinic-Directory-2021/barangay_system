@@ -5,6 +5,7 @@
         <title>Title</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="icon" type="image/png" href="{% static 'images/logo.png' %}">
         <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
         <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4.3.2/css/metro-all.min.css">
         <link rel="stylesheet" href="{% static 'css/index.css' %}">
@@ -16,18 +17,16 @@
         <script src="{% static 'js/index.js'%}" defer></script>
     </head>
     
-    <body style="background-image:url('../static/images/table.jpg'); background-size: cover;">
-        <div data-role="appbar" data-expand-point="md">
-            <a href="#" class="brand no-hover">
-                <span style="width: 55px;" class="p-2 border bd-dark border-radius">
-                    m<sup>4</sup>
-                </span>
+    <body style="background-image:url('../static/images/background.png'); background-size: contain; background-repeat: no-repeat; background-position: center;">
+        <div data-role="appbar" data-expand-point="md" class="bg-green" style="opacity: 0.7;">
+            <a href="#" class="brand no-hover  fg-white">
+                    Brgy. Tinejero
             </a>
         </div>
         <BR>
             <br>
           <!-- Single row -->
-        <div class="center bg-white border-radius-5">
+        <div class="center bg-white border-radius-5" style="opacity: 0.9; box-shadow: 0 0 5px green;">
                 <form class="m-5" method="post" id="loginForm">
                     {% csrf_token %}
                     <div class="form-group">
