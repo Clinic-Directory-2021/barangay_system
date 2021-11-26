@@ -32,10 +32,10 @@
                             <button class="button light" data-role="popover" data-popover-text="View"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#clearanceModal" onclick="clearanceModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}', '{{resident.request_id}}');"><icon class="mif-profile icon mr-5"></icon>Clearance</button>
                             
-                            {% elif resident.certificate_type == 'Indegency'%}
+                            {% elif resident.certificate_type == 'Indigency'%}
 
                             <button class="button success" data-role="popover" data-popover-text="View"
-                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#indigentModal" onclick="indigentModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}', '{{resident.request_id}}');"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
+                            data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#indigentModal" onclick="indigentModal('{{resident.first_name}}', '{{resident.middle_name}}','{{resident.last_name}}','{{resident.age}}','{{resident.resident_id}}', '{{resident.request_id}}', '{{resident.purpose}}');"><icon class="mif-clipboard icon mr-5"></icon>Indigency</button>
                             
                             {% elif resident.certificate_type == 'Building Permit'%}
                             <button class="button secondary" data-role="popover" data-popover-text="Edit"
@@ -155,7 +155,7 @@
             {% csrf_token %}
         <div class="modal-body">
                 <p><b>Purpose</b></p>
-                <input type="text" data-role="input" class="" name="purpose" required>
+                <input type="text" data-role="input" class="" name="purpose" id="indigent_purpose" required>
 
                 <p><b>Date When Will Indigent Be Given</b></p>
                 <input type="date" data-role="input" class="" name="date" required>

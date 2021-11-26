@@ -1,10 +1,12 @@
 
 
-function indigentModal(first_name, middle_name, last_name, age , resident_id, request_id){
+function indigentModal(first_name, middle_name, last_name, age , resident_id, request_id, purpose){
     $('#indigent_full_name').val(first_name.toUpperCase()  + ' ' + middle_name.toUpperCase()  + ' ' + last_name.toUpperCase());
     $('#indigent_age').val(age);
     $('#indigent_resident_id').val(resident_id);
     $('#indigent_request_id').val(request_id);
+    $('#indigent_purpose').val(purpose);
+    
 }
 
 function clearanceModal(first_name, middle_name, last_name, age , resident_id, request_id){
