@@ -366,7 +366,6 @@ def addResident(request):
         birthdate = request.POST.get('birthdate')
         religion = request.POST.get('religion')
         phone_number = request.POST.get('phone_number')
-        status = request.POST.get('status')
         birthplace = request.POST.get('birthplace')
         
         password = 'BARANGAYRESIDENT'+first_name+last_name
@@ -398,7 +397,7 @@ def addResident(request):
                 'birthdate': birthdate,
                 'religion': religion,
                 'phone_number': phone_number,
-                'status': status,
+                'status': "Offline",
                 'birthplace': birthplace,
             })
 

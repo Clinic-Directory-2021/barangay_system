@@ -26,7 +26,6 @@ $('#addResidentForm').on('submit', function(e){
     formData.append('birthdate', $('#birthdate').val());
     formData.append('religion', $('#religion').val());
     formData.append('phone_number', $('#phone_number').val());
-    formData.append('status', $('#status').val());
     formData.append('birthplace', $('#birthplace').val());
     formData.append('csrfmiddlewaretoken', $("input[name='csrfmiddlewaretoken']").val());
 
