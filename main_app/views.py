@@ -1232,7 +1232,10 @@ def delete_Official(request):
 
         storage.delete(official_img_directory, None)
 
-        return redirect('manage_official')      
+        return redirect('manage_official')     
+
+def archive_resident(request):
+    return render(request,'archive_resident.html'); 
 
 
         # # Create a Django response object, and specify content_type as pdf

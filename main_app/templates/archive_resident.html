@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="archive_resident_content">
+    <header style="width: 100vw;" class="bg-cyan p-2">
+        <h5>Home</h5>
+    </header>
+    <form>
+        <h3 class="p-5">Archive Residents</h3>
+        <div class="m-5" style="width:80%;">
+            <table class="table striped table-border mt-4"
+            data-role="table"
+           data-rows-steps="5, 10"
+            data-rows="5">
+                <thead>
+                    <tr class="bg-grayWhite">
+                        <th>PHOTO</th>
+                        <th>NAME</th>
+                        <th>GENDER</th>
+                        <th>PUROK</th>
+                        <th>STREET</th>
+                        <th>TOOLS</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="../static/images/logo.png" alt="" width="15%"></td>
+                            <td>Divina Infante Santos</td>
+                            <td>Female</td>
+                            <td>2</td>
+                            <td>Camia</td>
+                            <td>
+                                <button class="button primary mif-eye icon" data-role="popover" data-popover-text="View"
+                                data-popover-position="top" data-popover-hide="1000" onclick="viewResident('{{resident.resident_id}}')"> View</button>
+                                <button class="button success mif-refresh" data-role="popover" data-popover-text="Restore"
+                                data-popover-position="top" data-popover-hide="1000"> Restore</button>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+{% endblock content %}
