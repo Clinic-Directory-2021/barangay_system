@@ -47,6 +47,9 @@ urlpatterns = [
     path('asd/', views.asd, name="asd"),
     path('editResidentFirebase/', views.editResidentFirebase, name="editResidentFirebase"),
 
+    #restore resident
+    path('restore_resident/', views.restore_resident, name="restore_resident"),
+
     #Officials CRUD
     path('add_official_firebase/', views.add_official_firebase, name="add_official_firebase"),
     path('edit_official_firebase/', views.edit_official_firebase, name="edit_official_firebase"),

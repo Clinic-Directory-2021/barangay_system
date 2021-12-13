@@ -117,12 +117,16 @@ def resident_profile(request):
     resident_id = request.GET.get('resident_id')
 
     resident = firestoreDB.collection('resident_list').document(resident_id).get()
+    resident_in_archive = firestoreDB.collection('archive_resident_list').document(resident_id).get()
 
     data = {
         'resident': resident.to_dict,
+        'archive_resident': resident_in_archive.to_dict(),
     }
 
     return render(request,'resident_profile.html', data)
+
+
 
 def case_involved(request):
     return render(request,'case_involved.html')
@@ -418,11 +422,40 @@ def delete_resident(request):
         resident_id = request.GET.get('resident_id')
         img_directory = request.GET.get('img_directory')
 
-        auth.delete_user(resident_id)
+        residents = firestoreDB.collection('resident_list').document(resident_id).get()
 
+        value = residents.to_dict()
+        doc_ref = firestoreDB.collection('archive_resident_list').document(resident_id)
+
+        doc_ref.set({
+            'resident_id': resident_id,
+            'resident_img_url' : value['resident_img_url'],
+            'resident_img_directory' : value['resident_img_directory'],
+            'first_name': value['first_name'],
+            'email': value['email'],
+            'middle_name': value['middle_name'],
+            'street': value['street'],
+            'last_name': value['last_name'],
+            'purok': value['purok'],
+            'gender': value['gender'],
+            'citizenship': value['citizenship'],
+            'civil_status': value['civil_status'],
+            'diff_disabled': value['diff_disabled'],
+            'age': value['age'],
+            'relation': value['relation'],
+            'birthdate': value['birthdate'],
+            'religion': value['religion'],
+            'phone_number': value['phone_number'],
+            'status': "Offline",
+            'birthplace': value['birthplace'],
+            })
+            
         firestoreDB.collection('resident_list').document(resident_id).delete()
 
-        storage.delete(img_directory, None)
+
+
+        # auth.delete_user(resident_id)
+        # storage.delete(img_directory, None)
 
         return redirect('resident_record')      
 
@@ -1234,7 +1267,54 @@ def delete_Official(request):
         return redirect('manage_official')     
 
 def archive_resident(request):
-    return render(request,'archive_resident.html'); 
+    residents = firestoreDB.collection('archive_resident_list').get()
+
+    resident_data = []
+
+    for resident in residents:
+        value = resident.to_dict()
+        resident_data.append(value)
+    
+    data = {
+        'resident_data': resident_data,
+    }
+    return render(request,'archive_resident.html', data); 
+
+def restore_resident(request):
+    if request.method == 'GET':
+        resident_id = request.GET.get('resident_id')
+
+        residents = firestoreDB.collection('archive_resident_list').document(resident_id).get()
+
+        value = residents.to_dict()
+        doc_ref = firestoreDB.collection('resident_list').document(resident_id)
+
+        doc_ref.set({
+            'resident_id': resident_id,
+            'resident_img_url' : value['resident_img_url'],
+            'resident_img_directory' : value['resident_img_directory'],
+            'first_name': value['first_name'],
+            'email': value['email'],
+            'middle_name': value['middle_name'],
+            'street': value['street'],
+            'last_name': value['last_name'],
+            'purok': value['purok'],
+            'gender': value['gender'],
+            'citizenship': value['citizenship'],
+            'civil_status': value['civil_status'],
+            'diff_disabled': value['diff_disabled'],
+            'age': value['age'],
+            'relation': value['relation'],
+            'birthdate': value['birthdate'],
+            'religion': value['religion'],
+            'phone_number': value['phone_number'],
+            'status': "Offline",
+            'birthplace': value['birthplace'],
+            })
+            
+        firestoreDB.collection('archive_resident_list').document(resident_id).delete()
+
+        return redirect('/archive_resident'); 
 
 
         # # Create a Django response object, and specify content_type as pdf

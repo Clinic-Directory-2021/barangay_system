@@ -11,29 +11,29 @@
                 <div class="card-header">
                 </div>
                 <div class="card-content p-2">
-                    <img src="{{resident.resident_img_url}}" style="width: 100%">
+                    <img src="{{resident.resident_img_url}}{{archive_resident.resident_img_url}}" style="width: 100%">
                 </div>
                 <table class="table striped">
                     <tbody>
                         <tr>
                             <td><icon class="mif-credit-card icon mr-5"></icon>Age</td>
-                            <td>{{resident.age}}</td>
+                            <td>{{resident.age}}{{archive_resident.age}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-male icon mr-5"></icon> Gender</td>
-                            <td>{{resident.gender}}</td>
+                            <td>{{resident.gender}}{{archive_resident.gender}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-question icon mr-5"></icon>Civil Status</td>
-                            <td>{{resident.civil_status}}</td>
+                            <td>{{resident.civil_status}}{{archive_resident.civil_status}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-cake icon mr-5"></icon>Birth Date</td>
-                            <td>{{resident.birthdate}}</td>
+                            <td>{{resident.birthdate}}{{archive_resident.birthdate}}</td>
                         </tr>
                         <tr>
                             <td><icon class="mif-info icon mr-5"></icon>Status</td>
-                            <td>{{resident.status}}</td>
+                            <td>{{resident.status}}{{archive_resident.status}}</td>
                         </tr>
                         </tbody>
                 </table>    
@@ -56,39 +56,41 @@
                 <tbody>
                     <tr>
                         <td><icon class="mif-dialpad icon mr-5"></icon>Phone Number</td>
-                        <td>{{resident.phone_number}}</td>
+                        <td>{{resident.phone_number}}{{archive_resident.phone_number}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-envelop icon mr-5"></icon>Email Address</td>
-                        <td>{{resident.email}}</td>
+                        <td>{{resident.email}}{{archive_resident.email}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-list icon mr-5"></icon>Purok Area</td>
-                        <td>{{resident.purok}}</td>
+                        <td>{{resident.purok}}{{archive_resident.purok}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-keyboard-hide icon mr-5"></icon>Street</td>
-                        <td>{{resident.street}}</td>
+                        <td>{{resident.street}}{{archive_resident.street}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-profile icon mr-5"></icon>Citizenship</td>
-                        <td>{{resident.citizenship}}</td>
+                        <td>{{resident.citizenship}}{{archive_resident.citizenship}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-odnoklassniki icon mr-5"></icon>Disabled Person</td>
-                        <td>{{resident.diff_disabled}}</td>
+                        <td>{{resident.diff_disabled}}{{archive_resident.diff_disabled}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-steps icon mr-5"></icon>Relation Head Family</td>
-                        <td>{{resident.relation}}</td>
+                        <td>{{resident.relation}}{{archive_resident.relation}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-water icon mr-5"></icon>Religion</td>
-                        <td>{{resident.religion}}</td>
+                        <td>{{resident.religion}}{{archive_resident.religion}}</td>
                     </tr>
                     <tr>
                         <td><icon class="mif-keyboard-hide icon mr-5"></icon>Full Name</td>
-                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
+                        <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}
+                            {{archive_resident.first_name}} {{archive_resident.middle_name}} {{archive_resident.last_name}}
+                        </td>
                     </tr>
                     </tbody>
             </table>
