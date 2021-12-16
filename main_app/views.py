@@ -403,6 +403,7 @@ def addResident(request):
                 'phone_number': phone_number,
                 'status': "Offline",
                 'birthplace': birthplace,
+                'request_remaining': 5,
             })
 
             
@@ -1310,6 +1311,7 @@ def restore_resident(request):
             'phone_number': value['phone_number'],
             'status': "Offline",
             'birthplace': value['birthplace'],
+            'request_remaining': 5,
             })
             
         firestoreDB.collection('archive_resident_list').document(resident_id).delete()
