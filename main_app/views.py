@@ -382,6 +382,9 @@ def addResident(request):
         
             doc_ref = firestoreDB.collection('resident_list').document(user['localId'])
 
+            #upload product image
+            storage.child(img_file_directory).put(resident_image)
+
             doc_ref.set({
                 'resident_id': doc_ref.id,
                 'resident_img_url' : storage.child(img_file_directory).get_url(None),
@@ -405,11 +408,6 @@ def addResident(request):
                 'birthplace': birthplace,
                 'request_remaining': 5,
             })
-
-            
-
-            #upload product image
-            storage.child(img_file_directory).put(resident_image)
 
             return HttpResponse('Success!')
         except requests.HTTPError as e:
