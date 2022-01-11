@@ -17,6 +17,7 @@
                     <th>PHOTO</th>
                     <th>NAME</th>
                     <th>GENDER</th>
+                    <th>Transaction Ref. No.</th>
                     <th>ISSUE CERTIFICATE</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                         <td><img src="{{resident.resident_img_url}}" alt="" width="15%"></td>
                         <td>{{resident.first_name}} {{resident.middle_name}} {{resident.last_name}}</td>
                         <td>{{resident.gender}}</td>
+                        <td>ref number</td>
                         <td>
                             {% if resident.certificate_type == 'Clearance' %}
                             <button class="button light" data-role="popover" data-popover-text="View"
