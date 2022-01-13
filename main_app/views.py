@@ -20,6 +20,8 @@ from django.core.files import File
 from django.conf import settings
 import os
 
+from django.core.mail import send_mail
+
 
 config = {
   'apiKey': "AIzaSyADDBAM7_9VlZDRAGwyDeNne29tWPmcXb8",
@@ -532,7 +534,7 @@ def generate_indigent(request):
                 'clearance_type': 'Indigent Certificate',
                 'request_id': residency_request_id,
                 'status': 'Approved',
-                })
+                })  
 
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
@@ -615,6 +617,8 @@ def generate_building(request):
 
         residency_request_id = request.POST.get('residency_request_id')
 
+        email_field = request.POST.get('email_field')
+
         template_path = 'pdf_generated/building_permit.html'
 
         context = {
@@ -670,6 +674,16 @@ def generate_building(request):
                 'request_id': residency_request_id,
                 'status': 'Approved',
                 })
+
+            email_message = 'Your Request For Business Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
 
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None

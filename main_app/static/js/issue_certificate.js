@@ -16,11 +16,13 @@ function clearanceModal(first_name, middle_name, last_name, age , resident_id, r
     $('#clearance_request_id').val(request_id);
 }
 
-function buildingModal(first_name, middle_name, last_name, age , resident_id, request_id){
+function buildingModal(first_name, middle_name, last_name, age , resident_id, request_id, email){
     $('#building_full_name').val(first_name.toUpperCase()  + ' ' + middle_name.toUpperCase()  + ' ' + last_name.toUpperCase());
     $('#building_age').val(age);
     $('#building_resident_id').val(resident_id);
     $('#building_request_id').val(request_id);
+
+    $('#email_field').val(email);
 }
 
 function residencyModal(first_name, middle_name, last_name, age , resident_id, birthdate, civil_status , birthplace, request_id){
