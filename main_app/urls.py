@@ -65,6 +65,8 @@ urlpatterns = [
     path('generate_fencing/', views.generate_fencing, name="generate_fencing"),
     path('generate_water/', views.generate_water, name="generate_water"),
     path('generate_blotter/', views.generate_blotter, name="generate_blotter"),
+    path('generate_business/', views.generate_business, name="generate_business"),
+
     path('archive_resident/', views.archive_resident, name="archive_resident"),
     
 ]

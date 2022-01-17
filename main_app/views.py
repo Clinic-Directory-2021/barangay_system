@@ -472,6 +472,8 @@ def generate_indigent(request):
 
         residency_request_id = request.POST.get('residency_request_id')
 
+        email_field = request.POST.get('email_field')
+
         purpose = purpose.upper()
 
         template_path = 'pdf_generated/indigency.html'
@@ -534,7 +536,17 @@ def generate_indigent(request):
                 'clearance_type': 'Indigent Certificate',
                 'request_id': residency_request_id,
                 'status': 'Approved',
-                })  
+                })
+
+            email_message = 'Your Request For Indigency is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )  
 
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
@@ -547,6 +559,8 @@ def generate_clearance(request):
         clearance_resident_id = request.POST.get('clearance_resident_id')
 
         residency_request_id = request.POST.get('residency_request_id')
+
+        email_field = request.POST.get('email_field')
 
         template_path = 'pdf_generated/clearance.html'
 
@@ -604,6 +618,16 @@ def generate_clearance(request):
                 'request_id': residency_request_id,
                 'status': 'Approved',
                 })
+            
+            email_message = 'Your Request For Barangay Clearance is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
 
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
@@ -675,7 +699,7 @@ def generate_building(request):
                 'status': 'Approved',
                 })
 
-            email_message = 'Your Request For Business Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+            email_message = 'Your Request For Building Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
 
             send_mail(
                 'Barangay Tinejero Pulilan Bulacan',
@@ -699,6 +723,8 @@ def generate_residency(request):
         residency_birthdate = request.POST.get('residency_birthdate')
 
         residency_request_id = request.POST.get('residency_request_id')
+
+        email_field = request.POST.get('email_field')
 
         template_path = 'pdf_generated/residency.html'
 
@@ -765,6 +791,16 @@ def generate_residency(request):
                 'request_id': residency_request_id,
                 'status': 'Approved',
                 })
+            
+            email_message = 'Your Request For Building Residency is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
 
 
             return HttpResponse(result.getvalue(), content_type='application/pdf')
@@ -779,6 +815,8 @@ def generate_wiring(request):
         house_location = request.POST.get('house_location')
 
         residency_request_id = request.POST.get('residency_request_id')
+
+        email_field = request.POST.get('email_field')
 
         template_path = 'pdf_generated/wiring_permit.html'
 
@@ -837,6 +875,16 @@ def generate_wiring(request):
                 'status': 'Approved',
                 })
 
+            email_message = 'Your Request For Wiring Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -847,6 +895,8 @@ def generate_excavation(request):
         excavation_resident_id = request.POST.get('excavation_resident_id')
 
         residency_request_id = request.POST.get('residency_request_id')
+
+        email_field = request.POST.get('email_field')
 
         template_path = 'pdf_generated/excavation_clearance.html'
 
@@ -903,6 +953,16 @@ def generate_excavation(request):
                 'status': 'Approved',
                 })
 
+            email_message = 'Your Request For Excavation Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -913,6 +973,8 @@ def generate_fencing(request):
         fencing_resident_id = request.POST.get('fencing_resident_id')
 
         residency_request_id = request.POST.get('residency_request_id')
+
+        email_field = request.POST.get('email_field')
 
         template_path = 'pdf_generated/fencing_clearance.html'
 
@@ -969,6 +1031,16 @@ def generate_fencing(request):
                 'status': 'Approved',
                 })
 
+            email_message = 'Your Request For Fencing Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -979,6 +1051,8 @@ def generate_water(request):
         water_resident_id = request.POST.get('water_resident_id')
 
         residency_request_id = request.POST.get('residency_request_id')
+
+        email_field = request.POST.get('email_field')
 
         template_path = 'pdf_generated/water_installation_permit.html'
 
@@ -1035,6 +1109,16 @@ def generate_water(request):
                 'status': 'Approved',
                 })
 
+            email_message = 'Your Request For Water Installation Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
 
@@ -1047,6 +1131,8 @@ def generate_blotter(request):
         blotter_resident_id = request.POST.get('blotter_resident_id')
 
         residency_request_id = request.POST.get('residency_request_id')
+        
+        email_field = request.POST.get('email_field')
 
         recipient_list = recipient.split(",")
         
@@ -1111,8 +1197,97 @@ def generate_blotter(request):
                 'status': 'Approved',
                 })
 
+            email_message = 'Your Request For Summon Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
+
             return HttpResponse(result.getvalue(), content_type='application/pdf')
         return None
+
+def generate_business(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        business_full_name = request.POST.get('business_full_name')
+        business_resident_id = request.POST.get('business_resident_id')
+
+        email_field = request.POST.get('email_field')
+
+        residency_request_id = request.POST.get('residency_request_id')
+
+        template_path = 'pdf_generated/business_permit.html'
+
+        context = {
+            'date': date, 
+            'business_full_name': business_full_name,
+            
+            }
+
+        # # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        result = BytesIO()
+        pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+        
+        if not pdf.err:
+
+            doc_ref = firestoreDB.collection('resident_list').document(business_resident_id)
+
+            doc_ref_list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_business').document()
+
+            pdf_file_directory = business_resident_id + "/resident_business/"+doc_ref_list_of_issued_certificate.id + ".pdf"  
+
+            doc_ref.update({
+                'business_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'business_pdf_directory' : pdf_file_directory,
+                })
+
+            doc_ref_list_of_issued_certificate.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'business_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'business_pdf_directory' : pdf_file_directory,
+                'resident_id': business_resident_id,
+                'date': date, 
+                'resident_full_name': business_full_name,
+                'clearance_type': 'Business Permit',
+                })
+
+            storage.child(pdf_file_directory).put(result.getvalue())
+
+            firestoreDB.collection('certificate_requests').document(residency_request_id).delete()
+
+            approved_requests_doc_ref = firestoreDB.collection('approved_requests').document(residency_request_id)
+
+            approved_requests_doc_ref.set({
+                'certificate_id' : doc_ref_list_of_issued_certificate.id,
+                'fencing_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'fencing_pdf_directory' : pdf_file_directory,
+                'resident_id': business_resident_id,
+                'date': date, 
+                'resident_full_name': business_full_name,
+                'clearance_type': 'Business Permit',
+                'request_id': residency_request_id,
+                'status': 'Approved',
+                })
+
+            email_message = 'Your Request For Business Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
+
+            send_mail(
+                'Barangay Tinejero Pulilan Bulacan',
+                email_message,
+                'barangay.system2021@gmail.com',
+                [email_field],
+                fail_silently=False,
+            )
+
+            return HttpResponse(result.getvalue(), content_type='application/pdf')
+        return None
+
 
 def edit_resident(request):
     email = request.GET.get('email')
