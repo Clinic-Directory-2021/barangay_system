@@ -112,7 +112,7 @@
                             '{{resident.email}}');">
                             <icon class="mif-flag icon mr-5"></icon>Blotter</button>
 
-                            {% elif resident.certificate_type == 'Business Permit'%}
+                            {% elif resident.certificate_type == 'Business(Sari-Sari)' or resident.certificate_type == 'Business(Convinience)'%}
                             <button class="button primary"  data-role="popover" data-popover-text="Delete"
                             data-popover-position="top" data-popover-hide="1000" data-bs-toggle="modal" data-bs-target="#businessModal" 
                             onclick="businessModal('{{resident.first_name}}', 
@@ -120,8 +120,18 @@
                             '{{resident.last_name}}',
                             '{{resident.resident_id}}', 
                             '{{resident.request_id}}',
-                            '{{resident.email}}');">
-                            <icon class="mif-flag icon mr-5"></icon>Business Permit</button>
+                            '{{resident.email}}',
+                            '{{resident.place_of_business}}',
+                            '{{resident.applicant_name}}',
+                            '{{resident.certificate_type}},');">
+                            
+                            {% if resident.certificate_type == 'Business(Sari-Sari)' %}
+                            <icon class="mif-flag icon mr-5"></icon>Business Permit (Sari-Sari Store)</button>
+                            {% else %}
+                            <icon class="mif-flag icon mr-5"></icon>Business Permit (Convenience Store)</button>
+                            {% endif %}
+                              
+                           
                             {% endif %}
                         </td>
                     </tr>
@@ -472,6 +482,12 @@
               <input type="hidden" name="residency_request_id" id="business_request_id"/>
 
               <input type="hidden" name="email_field" id="email_field"/>
+
+              <input type="hidden" name="applicant_name" id="applicant_name"/>
+              <input type="hidden" name="place_of_business" id="place_of_business"/>
+
+              <input type="hidden" name="certificate_type" id="certificate_type"/>
+              
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>

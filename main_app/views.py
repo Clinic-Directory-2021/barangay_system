@@ -1234,12 +1234,19 @@ def generate_business(request):
 
         residency_request_id = request.POST.get('residency_request_id')
 
+        place_of_business = request.POST.get('place_of_business')
+        applicant_name = request.POST.get('applicant_name')
+        certificate_type = request.POST.get('certificate_type')
+        
+
         template_path = 'pdf_generated/business_permit.html'
 
         context = {
             'date': date, 
             'business_full_name': business_full_name,
-            
+            'place_of_business': place_of_business,
+            'applicant_name': applicant_name,
+            'certificate_type': certificate_type,
             }
 
         # # find the template and render it.
@@ -1268,6 +1275,8 @@ def generate_business(request):
                 'resident_id': business_resident_id,
                 'date': date, 
                 'resident_full_name': business_full_name,
+                'place_of_business': place_of_business,
+                'applicant_name': applicant_name,
                 'clearance_type': 'Business Permit',
                 })
 

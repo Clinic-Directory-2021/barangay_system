@@ -79,10 +79,16 @@ function blotterModal(first_name, middle_name, last_name, resident_id, request_i
     $('#email_field').val(email);
 }
 
-function businessModal(first_name, middle_name, last_name, resident_id, request_id, email){
+function businessModal(first_name, middle_name, last_name, resident_id, request_id, email,place_of_business,applicant_name, certificate_type){
     $('#business_full_name').val(first_name.toUpperCase()  + ' ' + middle_name.toUpperCase()  + ' ' + last_name.toUpperCase());
     $('#business_resident_id').val(resident_id);
     $('#business_request_id').val(request_id);
 
     $('#email_field').val(email);
+
+    $('#place_of_business').val(place_of_business);
+    $('#applicant_name').val(applicant_name);
+
+    $('#certificate_type').val(certificate_type);
+    
 }
