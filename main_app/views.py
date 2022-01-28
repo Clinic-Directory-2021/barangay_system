@@ -281,18 +281,18 @@ def excavation(request):
     return render(request,'excavation.html', data)
 
 def business_permit(request):
-    # list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_excavation').get()
+    list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_business').get()
 
-    # issued_certificate = []
+    issued_certificate = []
 
-    # for certificate in list_of_issued_certificate:
-    #     value = certificate.to_dict()
-    #     issued_certificate.append(value)
+    for certificate in list_of_issued_certificate:
+        value = certificate.to_dict()
+        issued_certificate.append(value)
     
-    # data = {
-    #     'certificates': issued_certificate,
-    # }
-    return render(request,'business_permit.html')
+    data = {
+        'certificates': issued_certificate,
+    }
+    return render(request,'business_permit.html', data)
 
 def report(request):
     residents = firestoreDB.collection('resident_list').get()
@@ -1279,8 +1279,8 @@ def generate_business(request):
 
             approved_requests_doc_ref.set({
                 'certificate_id' : doc_ref_list_of_issued_certificate.id,
-                'fencing_pdf_url' : storage.child(pdf_file_directory).get_url(None),
-                'fencing_pdf_directory' : pdf_file_directory,
+                'business_pdf_url' : storage.child(pdf_file_directory).get_url(None),
+                'business_pdf_directory' : pdf_file_directory,
                 'resident_id': business_resident_id,
                 'date': date, 
                 'resident_full_name': business_full_name,
