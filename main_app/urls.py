@@ -38,6 +38,7 @@ urlpatterns = [
     path('fencing/', views.fencing, name="fencing"),
     path('water/', views.water, name="water"),
     path('excavation/', views.excavation, name="excavation"),
+    path('business_permit/', views.business_permit, name="business_permit"),
     path('report/', views.report, name="report"),
     path('login_validation/', views.login_validation, name="login_validation"),
     path('logout/', views.logout, name="logout"),

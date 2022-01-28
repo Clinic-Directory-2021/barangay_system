@@ -280,6 +280,20 @@ def excavation(request):
     }
     return render(request,'excavation.html', data)
 
+def business_permit(request):
+    # list_of_issued_certificate = firestoreDB.collection('list_of_issued_certificate_excavation').get()
+
+    # issued_certificate = []
+
+    # for certificate in list_of_issued_certificate:
+    #     value = certificate.to_dict()
+    #     issued_certificate.append(value)
+    
+    # data = {
+    #     'certificates': issued_certificate,
+    # }
+    return render(request,'business_permit.html')
+
 def report(request):
     residents = firestoreDB.collection('resident_list').get()
 
