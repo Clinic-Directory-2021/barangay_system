@@ -1227,7 +1227,7 @@ def generate_blotter(request):
 def generate_business(request):
     if request.method == 'POST':
         date = request.POST.get('date')
-        #business_full_name = request.POST.get('business_full_name')
+        business_full_name = request.POST.get('business_full_name')
         business_resident_id = request.POST.get('business_resident_id')
 
         email_field = request.POST.get('email_field')
