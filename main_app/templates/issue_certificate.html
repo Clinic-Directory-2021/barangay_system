@@ -109,7 +109,8 @@
                             '{{resident.last_name}}',
                             '{{resident.resident_id}}', 
                             '{{resident.request_id}}',
-                            '{{resident.email}}');">
+                            '{{resident.email}}',
+                            '{{resident.complaint}}');">
                             <icon class="mif-flag icon mr-5"></icon>Blotter</button>
 
                             {% elif resident.certificate_type == 'Business(Sari-Sari)' or resident.certificate_type == 'Business(Convinience)'%}
@@ -123,7 +124,7 @@
                             '{{resident.email}}',
                             '{{resident.place_of_business}}',
                             '{{resident.applicant_name}}',
-                            '{{resident.certificate_type}},');">
+                            '{{resident.certificate_type}}');">
                             
                             {% if resident.certificate_type == 'Business(Sari-Sari)' %}
                             <icon class="mif-flag icon mr-5"></icon>Business Permit (Sari-Sari Store)</button>
@@ -434,6 +435,8 @@
             <p><b>Recipient of Summon Letter</b> <br>(if Recipient is more than one separate each recipient with comma [<strong> , </strong> ] without spacing [Example: Juan Dela Cruz,Pedro Santiago] )</p>
             <textarea rows="5" cols="5" name="recipient" required></textarea>
             
+            <input type="text" name="complaint" id="complaint" required readonly/>
+
             <!-- <input type="textarea" data-role="input" class="" name="recipient" required> -->
             <br>
             <p><b>Summon Date</b></p>
@@ -472,7 +475,7 @@
       <div class="modal-body">
               <p><b>Date When Will Business Permit Be Given</b></p>
               <input type="date" data-role="input" class="" name="date" required>
-
+              
               <!-- Hidden Data -->
               <input type="hidden" name="business_full_name" id="business_full_name"/> 
               <input type="hidden" name="business_resident_id" id="business_resident_id"/>

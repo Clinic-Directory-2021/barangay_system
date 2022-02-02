@@ -1231,6 +1231,8 @@ def generate_business(request):
         business_resident_id = request.POST.get('business_resident_id')
 
         email_field = request.POST.get('email_field')
+        complaint = request.POST.get('complaint')
+
 
         residency_request_id = request.POST.get('residency_request_id')
 
@@ -1246,6 +1248,7 @@ def generate_business(request):
             'place_of_business': place_of_business,
             'applicant_name': applicant_name,
             'certificate_type': certificate_type,
+            'complaint': complaint,
             }
 
         # # find the template and render it.

@@ -71,12 +71,14 @@ function waterModal(first_name, middle_name, last_name, resident_id, request_id,
     $('#email_field_water').val(email);
 }
 
-function blotterModal(first_name, middle_name, last_name, resident_id, request_id, email){
+function blotterModal(first_name, middle_name, last_name, resident_id, request_id, email, complaint){
     $('#blotter_full_name').val(first_name.toUpperCase()  + ' ' + middle_name.toUpperCase()  + ' ' + last_name.toUpperCase());
     $('#blotter_resident_id').val(resident_id);
     $('#blotter_request_id').val(request_id);
 
     $('#email_field_blotter').val(email);
+
+    $('#complaint').val(complaint);
 }
 
 function businessModal(first_name, middle_name, last_name, resident_id, request_id, email,place_of_business,applicant_name, certificate_type){
