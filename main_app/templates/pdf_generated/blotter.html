@@ -120,12 +120,12 @@
                     <p style="font-size: 16px;">To Whom It May Concern:<br><br><br><br>
                         Para kay 
                         {% for recipient in recipients %}
-                            <u>{{recipient}}</u><br>
+                            <u>{{recipient|upper}}</u><br>
                         {% endfor %}
                         <br>
                         Kayo po ay inaanyayahan na magsadya rito sa Barangay Hall ng Tinejero, Pulilan, <br>
                         Bulacan upang mapag-usapan ang sigalot o gusot na namamagitan sa inyo ni <br>
-                        Ginoong/Ginang/Bb. <u>{{blotter_full_name}}</u>.<br>
+                        Ginoong/Ginang/Bb. <u>{{blotter_full_name|upper}}</u>.<br>
 
                         Kayo po ay hihintayin ng aming Tanggapan sa Ika-{{summon_date}}<br>
                         sa oras na ika-{{summon_time}}.<br>
@@ -135,8 +135,6 @@
 
                         Mangyari po lamang na dumating sila sa oras na nabanggit sa itaas nito.<br>
                         
-                        <!-- ETO YUNG COMPLAINT PRE -->
-                        {{complaint}}
                     <br>
                     </p>
                     <br>

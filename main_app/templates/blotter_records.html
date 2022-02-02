@@ -15,6 +15,7 @@
                     <th>SUMMON DATE</th>
                     <th>SUMMON TIME</th>
                     <th>REQUESTED BY</th>
+                    <th>COMPLAINT</th>
                     <th>TOOLS</th>
                 </tr>
                 </thead>
@@ -25,6 +26,7 @@
                         <td>{{blotter.summon_date}}</td>
                         <td>{{blotter.summon_time}}</td>
                         <td>{{blotter.resident_full_name}}</td>
+                        <td>{{blotter.complaint}}</td>
                         <td><button class="button mif-printer icon primary" onclick="viewCertificate('{{blotter.blotter_pdf_url}}')"></button></td>
                     </tr>
                 </tbody>

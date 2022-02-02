@@ -435,7 +435,7 @@
             <p><b>Recipient of Summon Letter</b> <br>(if Recipient is more than one separate each recipient with comma [<strong> , </strong> ] without spacing [Example: Juan Dela Cruz,Pedro Santiago] )</p>
             <textarea rows="5" cols="5" name="recipient" required></textarea>
             
-            <input type="text" name="complaint" id="complaint" required readonly/>
+            
 
             <!-- <input type="textarea" data-role="input" class="" name="recipient" required> -->
             <br>
@@ -445,12 +445,16 @@
             <p><b>Summon Time</b></p>
             <input type="time" data-role="input" class="" name="summon_time" required>
 
+            <p><b>Complaint</b></p>
+            <p id="complaintText"></p>
+
             <!-- Hidden Data -->
             <input type="hidden" name="blotter_full_name" id="blotter_full_name"/> 
             <input type="hidden" name="blotter_resident_id" id="blotter_resident_id"/>
             <input type="hidden" name="residency_request_id" id="blotter_request_id"/>
 
             <input type="hidden" name="email_field" id="email_field_blotter"/>
+            <input type="hidden" name="complaint" id="complaint" />
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><icon class="mif-cancel mr-3"></icon>Close</button>

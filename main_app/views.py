@@ -1147,6 +1147,7 @@ def generate_blotter(request):
         residency_request_id = request.POST.get('residency_request_id')
         
         email_field = request.POST.get('email_field')
+        complaint = request.POST.get('complaint')
 
         recipient_list = recipient.split(",")
         
@@ -1189,6 +1190,7 @@ def generate_blotter(request):
                 'recipient': recipient,
                 'resident_full_name': blotter_full_name,
                 'clearance_type': 'Blotter',
+                'complaint': complaint,
                 })
 
             storage.child(pdf_file_directory).put(result.getvalue())
@@ -1209,6 +1211,7 @@ def generate_blotter(request):
                 'clearance_type': 'Blotter',
                 'request_id': residency_request_id,
                 'status': 'Approved',
+                'complaint': complaint,
                 })
 
             email_message = 'Your Request For Summon Permit is Now Approved, You Can download it Now Using Our Barangay System Mobile Application'
@@ -1231,7 +1234,6 @@ def generate_business(request):
         business_resident_id = request.POST.get('business_resident_id')
 
         email_field = request.POST.get('email_field')
-        complaint = request.POST.get('complaint')
 
 
         residency_request_id = request.POST.get('residency_request_id')
@@ -1248,7 +1250,6 @@ def generate_business(request):
             'place_of_business': place_of_business,
             'applicant_name': applicant_name,
             'certificate_type': certificate_type,
-            'complaint': complaint,
             }
 
         # # find the template and render it.

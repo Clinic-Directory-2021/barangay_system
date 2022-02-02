@@ -79,6 +79,8 @@ function blotterModal(first_name, middle_name, last_name, resident_id, request_i
     $('#email_field_blotter').val(email);
 
     $('#complaint').val(complaint);
+
+    $('#complaintText').text(complaint)
 }
 
 function businessModal(first_name, middle_name, last_name, resident_id, request_id, email,place_of_business,applicant_name, certificate_type){
